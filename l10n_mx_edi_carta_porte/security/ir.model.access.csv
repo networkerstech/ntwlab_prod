@@ -1,0 +1,10 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_cfdi_traslado_line,access_cp_traslado_line,model_cp_traslado_line,base.group_user,1,1,1,1
+access_ubicaciones_line,access_ubicaciones_line,model_cp_ubicaciones_line,base.group_user,1,1,1,1
+access_remolques_line,access_remolques_line,model_cp_remolques_line,base.group_user,1,1,1,1
+access_autotransporte,access_autotransporte,model_cp_autotransporte,base.group_user,1,1,1,1
+access_figura_line,access_figura_line,model_cp_figura_line,base.group_user,1,1,1,1
+access_aduanera_line,access_aduanera_line,model_cp_aduanera_line,base.group_user,1,1,1,1
+access_guias_line,access_guias_line,model_cp_guias_line,base.group_user,1,1,1,1
+access_aduanero_line,access_aduanero_line,model_cp_aduanero_line,base.group_user,1,1,1,1
+access_transporta_line,access_transporta_line,model_cp_transporta_line,base.group_user,1,1,1,1

@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <template id="report_invoice_document_mx" inherit_id="l10n_mx_edi.report_invoice_document">
+
+            <!-- External Trade stuff -->
+            <xpath expr="//div[@id='payment_term']" position="after">
+                <div t-if="o.carta_porte">
+
+				<!--TABLA DE MERCANCIAS A TRASLADAR-->
+				<table class="table table-bordered">
+					<thead class="thead-light">
+						<tr><td colspan="6" style="text-align:center;padding:3px;">MERCANCIAS A TRASLADAR</td></tr>
+						<tr>
+					    	<td style="padding:2px;">Producto</td>
+					    	<td style="padding:2px;">Nombre</td>
+					    	<td style="padding:2px;">Cantidad</td>
+					    	<td style="padding:2px;">Precio Unitario</td>
+					    	<td style="padding:2px;">Peso Kg</td>
+					    	<td style="padding:2px;">Subtotal</td>
+					    </tr>
+					</thead>
+
+					<tbody>
+						<t t-foreach="o.factura_line_ids" t-as="l">
+							<tr>
+								<td><span t-field="l.product_id"/></td>
+								<td><span t-field="l.name"/></td>
+								<td><span t-field="l.quantity"/></td>
+								<td><span t-field="l.price_unit"/></td>
+								<td><span t-field="l.pesoenkg"/></td>
+								<td><span t-esc="l.price_subtotal" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/></td>
+							</tr>
+						</t>
+					</tbody>
+				</table>
+				<!--TERMINA TABLA DE MERCANCIAS A TRASLADAR-->
+
+				<!--TABLA DE ATRIBUTOS CARTA PORTE-->
+				<div name="atributos" class="row" style="page-break-inside: avoid">
+						<!--INICIA CODIGOQR-->
+						<div class="col-5">
+                                                      <img t-if="o.qrcode_ccp_image" t-att-src="image_data_uri(o.qrcode_ccp_image)" style="height: 180px;width: 180px;" />
+						</div>
+						<!--TERMINA CODIGO QR-->
+					    <div class="col-7" >
+				<table class="table table-bordered" style="width:100%">
+					<thead class="thead-light">
+						<tr style="width:100%">
+							<td style="text-align:center;padding:3px;">ATRIBUTOS DE CARTA PORTE</td>
+						</tr>
+					</thead>
+					<tbody>
+						<tr style="width:100%">
+						<td>
+							<strong>Tipo de transporte: </strong><span t-field="o.tipo_transporte"/><br/>
+							<strong>¿Es un transporte internacional? </strong><span t-field="o.transpinternac"/>
+							<t t-if="o.transpinternac == 'Si'">
+								<strong>¿Las mercancías ingresan o salen del territorio nacional? </strong><span t-field="o.entradasalidamerc"/><br/>
+								<strong>Vía de ingreso / salida </strong><span t-field="o.viaentradasalida"/>
+							</t>
+							<br/>
+							<strong>IdCCP: </strong><span t-field="o.IdCCP"/><br/>
+						</td>
+						</tr>
+					</tbody>
+				</table>
+						</div>
+				<!--TERMINA TABLA DE ATRIBUTOS CARTA PORTE-->
+				</div>
+
+				<!--TABLA DE UBICACIONES-->
+				<table class="table table-bordered">
+					<thead class="thead-light">
+						<tr><td colspan="6" style="text-align:center;padding:3px;">UBICACIONES</td></tr>
+						<tr>
+                            <td style="padding:2px;">Tipo de ubicación</td>
+                            <td style="padding:2px;">Dirección</td>
+                            <td style="padding:2px;">Fecha de salida/llegada</td>
+                            <t t-if="o.tipo_transporte != '01'">
+                               <td style="padding:2px;">Tipo de estación</td>
+                               <td style="padding:2px;">Número de estación</td>
+                            </t>
+                            <t t-if="o.tipo_transporte == '01'">
+                               <td style="padding:2px;">Distancia recorrida (Km.)</td>
+                            </t>
+					    </tr>
+					</thead>
+
+					<tbody>
+						<t t-foreach="o.ubicaciones_line_ids" t-as="l">
+							<tr>
+								<td><span t-field="l.tipoubicacion"/></td>
+								<td>
+									<span t-field="l.contacto"/> <span t-field="l.contacto.street"/> <span t-field="l.contacto.street2"/> <br/>
+									<span t-field="l.contacto.city"/> <span t-field="l.contacto.state_id.name"/> <span t-field="l.contacto.zip"/> <br/>
+									<span t-field="l.contacto.country_id.name"/>
+								</td>
+								<td><span t-field="l.fecha"/></td>
+								<td><span t-field="l.tipoestacion"/></td>
+								<td><span t-field="l.numestacion"/></td>
+								<td><span t-field="l.distanciarecorrida"/></td>
+							</tr>
+						</t>
+					</tbody>
+				</table>
+				<!--TERMINA TABLA DE UBICACIONES-->
+
+				<!--TABLA DE MERCANCIAS-->
+				<table class="table table-bordered">
+					<thead class="thead-light">
+						<tr>
+							<td colspan="3" style="text-align:center;padding:3px;">MERCANCIAS</td>
+						</tr>
+					</thead>
+					<tbody>
+						<td><strong>Peso total neto: </strong><span t-field="o.pesonetototal"/><br/></td>
+						<td><strong>Número total de mercancías: </strong><span t-field="o.numerototalmercancias"/></td>
+                        <td><strong>Cargo por tasación: </strong><span t-field="o.cargoportasacion"/></td>
+					</tbody>
+				</table>
+				<!--TERMINA TABLA DE MERCANCIAS-->
+
+
+				<!--TABLA DE DATOS DE TRANSPORTE-->
+
+				<table class="table table-bordered" style="margin-bottom:0px;">
+					<thead class="thead-light">
+						<tr>
+							<td colspan="2" style="text-align:center;padding:3px;">DATOS DE TRANSPORTE</td>
+						</tr>
+					</thead>
+					<tbody>
+						<td style="width:50%;">
+							<strong>GENERALES</strong><br/>
+							<strong>Permiso SCT </strong><span t-field="o.permisosct"/><br/>
+							<strong>Número de permiso SCT </strong><span t-field="o.numpermisosct"/><br/>
+						</td>
+						<td style="width:50%;">
+							<strong>VEHÍCULO</strong><br/>
+							<strong>Configuración vehículo </strong><span t-field="o.autotrasporte_ids.confvehicular"/><br/>
+							<strong>Placa del vehículo </strong><span t-field="o.autotrasporte_ids.placavm"/><br/>
+							<strong>Año del vehículo </strong><span t-field="o.autotrasporte_ids.aniomodelo"/><br/>
+							<strong>Nombre de la aseguradora </strong><span t-field="o.autotrasporte_ids.nombreaseg"/><br/>
+							<strong>Número de póliza </strong><span t-field="o.autotrasporte_ids.numpoliza"/><br/>
+
+							<t t-if="o.remolque_line_ids">
+								<br/><strong>Remolque</strong><br/>
+								<t t-foreach="o.remolque_line_ids" t-as="l">
+										<strong>Subtipo: </strong><span t-field="l.subtipo_id.descripcion"/> --- 
+										<strong>Placa: </strong><span t-field="l.placa"/><br/>
+								</t>
+							</t>
+						</td>
+					</tbody>
+				</table>
+				<table class="table table-bordered" style="margin-top:0px;">
+					<thead class="thead-light">
+						<tr>
+							<td colspan="2" style="text-align:center;padding:3px;">FIGURAS DE TRANSPORTE</td>
+						</tr>
+						<tr>
+							<td style="text-align:center;padding:3px;width:50%;">Tipo de figura</td>
+							<td  style="text-align:center;padding:3px;width:50%;">Nombre</td>
+						</tr>
+					</thead>
+					<tbody>
+						<t t-foreach="o.figuratransporte_ids" t-as="l">
+							<tr>
+								<td><span t-field="l.tipofigura.clave"/></td>
+								<td><span t-field="l.figura_id.name"/></td>
+							</tr>
+						</t>
+					</tbody>
+				</table>
+				<!--TERMINA TABLA DE DATOS DE TRANSPORTE-->
+
+
+                </div>
+            </xpath>
+        </template>
+    </data>
+</odoo>

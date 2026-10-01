@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_l10n_mx_edi_invoice_form_inherit" model="ir.ui.view">
+            <field name="name">l10n_mx_edi.invoice.form.inherit</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_move_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//page[@name='other_info']" position="inside">
+                    <group invisible="move_type not in ['out_invoice', 'out_refund']">
+                        <group string="Complemento Carta Porte">
+                            <field name="carta_porte"/>
+                        </group>
+                    </group>
+                </xpath>
+               <xpath expr="//notebook" position="inside">
+                         <page name="invoice_line_factura" string="Mercancía a trasladar" invisible = "carta_porte == False">
+                            <field name="factura_line_ids" readonly= "state != 'draft'">
+                            <list editable="bottom">
+                                <control>
+                                   <create string="Agregar línea"/>
+                                </control>
+                                <field name="currency_id" column_invisible="True"/>
+                                <field name="cfdi_traslado_id" column_invisible="True"/>
+                                <field name="product_id" string="Producto"/>
+                                <field name="name" string="Nombre"/>
+                                <field name="quantity" string="Cantidad"/>
+                                <field name="price_unit" string="Precio Unitario"/>
+                                <field name="pesoenkg"/>
+                                <field name="invoice_line_tax_ids" widget="many2many_tags" column_invisible="True"/>
+                                <field name="moneda"/>
+                                <field name="price_subtotal" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                                <field name="guias_line_ids" widget="many2many_tags" column_invisible="parent.manejodeguias != True" domain="[('cfdi_traslado_id','=',cfdi_traslado_id)]"/>
+                                <field name="aduanera_line_ids" widget="many2many_tags" column_invisible="parent.transpinternac != 'Sí'" domain="[('cfdi_traslado_id','=',cfdi_traslado_id)]"/>
+                                <field name="transporta_line_ids" widget="many2many_tags" column_invisible="parent.manejodeids != True" domain="[('cfdi_traslado_id','=',cfdi_traslado_id)]"/>
+                              </list>
+                            </field>
+                            <field name="aduanera_line_ids" readonly= "state != 'draft'" invisible ="transpinternac != 'Sí'">
+                              <list editable="bottom">
+                                <control>
+                                   <create string="Agregar línea"/>
+                                </control>
+                                <field name="tipo_documento_id" />
+                                <field name="pedimento" />
+                                <field name="id_doc_aduanero" />
+                                <field name="rfc_import" />
+                              </list>
+                            </field>
+                            <field name="guias_line_ids" readonly="state != 'draft'" invisible="manejodeguias != True">
+                              <list editable="bottom">
+                                <control>
+                                   <create string="Agregar línea"/>
+                                </control>
+                                <field name="guiaid_numero" />
+                                <field name="guiaid_descrip" />
+                                <field name="guiaid_peso" />
+                              </list>
+                            </field>
+                            <field name="transporta_line_ids" readonly="state != 'draft'" invisible="manejodeids != True">
+                              <list editable="bottom">
+                                <control>
+                                   <create string="Agregar línea"/>
+                                </control>
+                                <field name="name"/>
+                                <field name="cantidad"/>
+                                <field name="idorigen"/>
+                                <field name="iddestino"/>
+                              </list>
+                            </field>
+                        </page>
+
+                        <page name="carta_porte" string="Carta Porte" invisible="carta_porte == False">
+                            <group cols="4">
+                                <group string="Atributos de carta porte">
+                                    <field name="tipo_transporte" readonly="state != 'draft'"/>
+                                    <field name="transpinternac" readonly="state != 'draft'"/>
+                                    <field name="entradasalidamerc" readonly= "state != 'draft'" invisible ="transpinternac != 'Sí'"/>
+                                    <field name="viaentradasalida" readonly= "state != 'draft'" invisible ="transpinternac != 'Sí'"/>
+                                    <field name="uuidcomercioext" readonly= "state != 'draft'" invisible ="transpinternac != 'Sí' or entradasalidamerc != 'salida'"/>
+                                    <field name="paisorigendestino" readonly= "state != 'draft'" invisible ="transpinternac != 'Sí'"/>
+                                    <field name="IdCCP"/>
+                                    <field name="LogisticaInversa"  readonly="state != 'draft'"/>
+                                </group>
+                                <group string="Atributos de mercancias">
+                                    <field name="pesobrutototal" readonly= "state != 'draft'"/>
+                                    <field name="unidadpeso" readonly= "state != 'draft'"/>
+                                    <field name="pesonetototal" readonly= "state != 'draft'"/>
+                                    <field name="numerototalmercancias" readonly= "state != 'draft'"/>
+                                    <field name="manejodeguias" readonly= "state != 'draft'" />
+                                    <field name="manejodeids" readonly= "state != 'draft'"/>
+                                </group>
+                                <group invisible="transpinternac != 'Sí'">
+                                       <field name="aduanero_line_ids" readonly= "state != 'draft'">
+                                           <list editable="bottom">
+                                               <control>
+                                                  <create string="Agregar línea"/>
+                                               </control>
+                                              <field name="regimen_aduanero"/>
+                                           </list>
+                                       </field>
+                                </group>
+                            </group>
+                        </page>
+
+                        <page name="ccp_ubicaciones" string="Ubicaciones" invisible="carta_porte == False">
+                          <field name="ubicaciones_line_ids" readonly="state != 'draft'" context="{'default_tipo_transporte' : tipo_transporte}">
+                            <list editable="bottom">
+                                <control>
+                                    <create string="Agregar línea"/>
+                                </control>
+                                <field name="tipo_transporte" column_invisible="1"/>
+                                <field name="tipoubicacion"/>
+                                <field name="contacto"/>
+                                <field name="fecha"/>
+                                <field name="idubicacion" column_invisible="parent.manejodeids != True"/>
+                                <field name="tipoestacion" column_invisible="parent.tipo_transporte == '01'"/>
+                                <field name="numestacion" column_invisible="parent.tipo_transporte == '01'"/>
+                                <field name="distanciarecorrida" column_invisible="parent.tipo_transporte != '01'"/>
+                            </list>
+                          </field>
+                        </page>
+
+                        <page name="ccp_autotransporte" string="Datos de transporte" invisible="carta_porte == False">
+                            <group cols="4">
+                                <group string="Generales">
+                                    <field name="permisosct" readonly= "state != 'draft'"/>
+                                    <field name="numpermisosct" readonly= "state != 'draft'"/>
+                                </group>
+                                <group>
+                                </group>
+                                <group string="Autotransporte"  invisible="tipo_transporte != '01'">
+                                    <field name="autotrasporte_ids" readonly= "state != 'draft'"/>
+                                </group>
+                                <group invisible="tipo_transporte != '01'">
+                                    <field name="remolque_line_ids" readonly= "state != 'draft'">
+                                        <list editable="bottom">
+                                           <control>
+                                              <create string="Agregar línea"/>
+                                           </control>
+                                           <field name="subtipo_id" />
+                                           <field name="placa" />
+                                        </list>
+                                    </field>
+                                </group>
+                                <group string="Seguro de mercancías" invisible="tipo_transporte != '01'">
+                                    <field name="nombreaseg_merc" readonly= "state != 'draft'"/>
+                                    <field name="numpoliza_merc" readonly= "state != 'draft'"/>
+                                    <field name="primaseguro_merc" readonly= "state != 'draft'"/>
+                                </group>
+                                <group string="Seguro medioambiental" readonly= "state != 'draft'">
+                                    <field name="seguro_ambiente" readonly= "state != 'draft'"/>
+                                    <field name="poliza_ambiente" readonly= "state != 'draft'"/>
+                                </group>
+                                <group string="Aereo" invisible="tipo_transporte != '03'">
+                                    <field name="numeroguia" readonly= "state != 'draft'"/>
+                                    <field name="lugarcontrato" readonly= "state != 'draft'"/>
+                                    <field name="transportista_id" readonly= "state != 'draft'"/>
+                                    <field name="embarcador_id" readonly= "state != 'draft'"/>
+                                    <field name="matriculaaeronave" readonly= "state != 'draft'"/>
+                                    <field name="cargoportasacion" readonly= "state != 'draft'"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page name="ccp_figuratrans" string="Figura transporte" invisible="carta_porte == False">
+                                <group string="Figura transporte">
+                                    <field name="figuratransporte_ids" readonly= "state != 'draft'">
+                                        <list editable="bottom">
+                                            <control>
+                                               <create string="Agregar línea"/>
+                                            </control>
+                                           <field name="tipofigura" />
+                                           <field name="figura_id" />
+                                           <field name="partetransporte" widget="many2many_tags"/>
+                                        </list>
+                                    </field>
+                                </group>
+                        </page>
+
+            </xpath>
+            </field>
+    </record>
+
+    <record id="model_action_llenar_ubicaciones" model="ir.actions.server">
+           <field name="name">Llenar ID Ubicacion</field>
+        <field name="model_id" ref="account.model_account_move"/>
+        <field name="binding_model_id" ref="account.model_account_move"/>
+        <field name="state">code</field>
+        <field name="code">action = records.llenar_id_ubicacion()</field>
+    </record>
+
+</odoo>
