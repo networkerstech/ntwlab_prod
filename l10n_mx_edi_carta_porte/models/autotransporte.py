@@ -36,11 +36,9 @@ class AutoTransporte(models.Model):
 
     @api.model_create_multi
     def create(self, vals_list):
+        """Asigna el folio de la secuencia ccp.autotransporte según la compañía del vehículo."""
         for vals in vals_list:
             if vals.get('name', _('New')) == _('New'):
-                if 'company_id' in vals:
-                    vals['name'] = self.env['ir.sequence'].with_context(vals['company_id']).next_by_code('ccp.autotransporte') or _('New')
-                else:
-                    vals['name'] = self.env['ir.sequence'].next_by_code('ccp.autotransporte') or _('New')
-        result = super(AutoTransporte, self).create(vals_list)
-        return result
+                compania = vals.get('company_id') or self.env.company.id
+                vals['name'] = self.env['ir.sequence'].with_company(compania).next_by_code('ccp.autotransporte') or _('New')
+        return super().create(vals_list)
