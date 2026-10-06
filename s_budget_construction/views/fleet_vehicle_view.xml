@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="fleet_vehicle_view_form" model="ir.ui.view">
+            <field name="name">fleet.vehicle.form</field>
+            <field name="model">fleet.vehicle</field>
+            <field name="inherit_id" ref="fleet.fleet_vehicle_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//form/sheet/group[1]" position="attributes">
+                    <attribute name="col">3</attribute>
+                </xpath>
+                <xpath expr="//form/sheet/group[1]" position="inside">
+                    <group string="Rent">
+                        <field name="hourly_cost" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                        <field name="daily_cost" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                        <field name="weekly_cost" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                        <field name="monthly_cost" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                        <field name="provider_id" />
+                    </group>
+                </xpath>
+                 <xpath expr="//field[@name='tag_ids']" position="after">
+                     <div>
+                         <span class="d-inline-block">
+                            <field name="build_ok"/>
+                            <label for="build_ok" />
+                         </span>
+                     </div>
+                      <label for="supply_type" />
+                      <field name="supply_type" invisible="not build_ok"/>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

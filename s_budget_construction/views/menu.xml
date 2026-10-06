@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem name="Budget"
+        id="budget_menu_root"
+        sequence="20"
+        web_icon="s_budget_construction,static/description/icon.png"
+        groups="s_budget_construction.group_user" />
+
+    <!-- Budget -->
+    <menuitem
+        id="budget_menu"
+        name="Budget"
+        action="s_budget_construction.budged_action"
+        parent="s_budget_construction.budget_menu_root"
+        sequence="10" />
+
+    <!-- Product -->
+    <menuitem
+        id="product_menu"
+        name="Supplies"
+        parent="s_budget_construction.budget_menu_root"
+        sequence="10" />
+    <menuitem
+        id="materials_menu"
+        name="Materials"
+        action="s_budget_construction.products_for_building_action"
+        parent="s_budget_construction.product_menu"
+        sequence="10" />
+    <menuitem
+        id="tools_menu"
+        name="Tools"
+        action="s_budget_construction.tools_action"
+        parent="s_budget_construction.product_menu"
+        sequence="10" />
+     <menuitem
+        id="machinery_menu"
+        name="Machinery"
+        action="s_budget_construction.machinery_action"
+        parent="s_budget_construction.product_menu"
+        sequence="10" />
+     <menuitem
+        id="transport_menu"
+        name="Transport Cost"
+        action="s_budget_construction.transport_action"
+        parent="s_budget_construction.product_menu"
+        sequence="11" />
+        
+    <menuitem id="budged_supply_type_menu"
+        action="s_budget_construction.budget_supply_type_action"
+        name="Supply Type"
+        sequence="1"
+        parent="s_budget_construction.product_menu" />
+    <menuitem id="work_force_menu"
+        action="s_budget_construction.open_view_employee_list_my2"
+        name="Work force"
+        sequence="1"
+        parent="s_budget_construction.product_menu" />
+<!--     <menuitem id="transportation_cost_menu"-->
+<!--        action="fleet.fleet_vehicle_action"-->
+<!--        name="Transportation cost"-->
+<!--        sequence="1"-->
+<!--        parent="s_budget_construction.product_menu" />-->
+
+
+    <!-- Configuration -->
+    <menuitem id="budget_menu_config"
+        name="Configuration"
+        parent="s_budget_construction.budget_menu_root"
+        groups="s_budget_construction.group_manager"
+        sequence="20" />
+
+    <menuitem
+        id="budged_supply_menu"
+        action="s_budget_construction.budged_supply_action"
+        name="Supplies"
+        sequence="2"
+        parent="s_budget_construction.budget_menu_config" />
+    <menuitem
+        id="budget_pricelist_menu"
+        action="s_budget_construction.s_budget_pricelist_action"
+        name="Pricelist"
+        sequence="3"
+        groups="s_budget_construction.group_price_list_user"
+        parent="s_budget_construction.budget_menu_config" />
+    <menuitem
+        id="budged_template_action_menu"
+        action="s_budget_construction.budged_template_action_server"
+        name="Budget Template"
+        sequence="4"
+        groups="s_budget_construction.group_budget_template_user"
+        parent="s_budget_construction.budget_menu_config" />
+
+        <!-- Your Action -->
+        <record id="action_s_budget_const_concept_component" model="ir.actions.act_window">
+            <field name="name">Auxiliars</field>
+            <field name="res_model">s.budget.const.concept.component</field>
+            <field name="view_mode">list,form</field>
+            <field name="context">{'default_supply_type':'auxiliaries'}</field>
+            <field name="domain">[('supply_type', 'in', ['auxiliaries'])]</field>
+        </record>
+
+        <menuitem id="action_s_budget_const_concept_component_menu"
+                  name="Auxiliars"
+                  parent="s_budget_construction.product_menu"
+                  sequence="10"
+                  action="action_s_budget_const_concept_component"/>
+
+</odoo>

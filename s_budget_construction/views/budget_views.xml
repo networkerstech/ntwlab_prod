@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="construction_budget_view_tree" model="ir.ui.view">
+            <field name="name">s.budget.const.view.tree</field>
+            <field name="model">project.project</field>
+            <field name="arch" type="xml">
+                <list string="">
+                    <field name="name" />
+                    <field name="total_price" />
+                    <field name="total_cost" />
+                </list>
+            </field>
+        </record>
+
+        <record id="construction_budget_view_form" model="ir.ui.view">
+            <field name="name">s.budget.const.view.form</field>
+            <field name="model">project.project</field>
+            <field name="arch" type="xml">
+                <form string="">
+                    <header>
+
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button class="oe_stat_button"
+                                name="action_open_budget"
+                                type="object"
+                                icon="fa-tasks">
+                                <field string="Items" name="task_count" widget="statinfo" />
+                            </button>
+                        </div>
+
+                        <div class="oe_title">
+                            <h1 class="d-flex flex-row">
+                                <field name="is_favorite" nolabel="1" widget="boolean_favorite"
+                                    class="me-2" />
+                                <field name="name" options="{'line_breaks': False}" widget="text"
+                                    class="o_text_overflow" placeholder="e.g. Office Party" />
+                            </h1>
+                        </div>
+                        <group>
+
+                            <group>
+                                <field name="id" string="ID" invisible="1"/>
+                                <field name="price_list_id" invisible="1"/>
+                                <field name="total_price" />
+                                <field name="percent_to_price" required="1"/>
+                                <field name="total_cost" />
+                            </group>
+                            <group>
+                                <button class="oe_stat_button"
+                                    name="action_open_budget"
+                                    type="object"
+                                    string="Items"
+                                    icon="fa-tasks">
+                                </button>
+                            </group>
+                        </group>
+                        <notebook>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+        <record id="construction_budget_view_kanban" model="ir.ui.view">
+            <field name="name">construction.budget.kanban</field>
+            <field name="model">project.project</field>
+            <field name="arch" type="xml">
+                <kanban
+                    class="o_kanban_mobile">
+                    <field name="user_id" string="Project Manager" />
+                    <templates>
+                        <t t-name="card">
+                            <div
+                                t-attf-class="oe_kanban_content oe_kanban_global_click o_kanban_get_form">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <strong>
+                                            <field name="name" string="Project Name"/>
+                                        <span style="display: block; margin-top: 2px;">
+                                            PROJECT ID: <field name="id" string="ID"/>
+                                        </span>
+                                        <span style="display: block; margin-top: 2px;">
+                                            Total Price: <field name="total_price" string="Total Price"/>
+                                            </span>
+                                        <span style="display: block; margin-top: 2px;">
+                                            Total Cost: <field name="total_cost" string="Total Cost"/>
+                                            </span>
+                                        </strong>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-8">
+                                        <field name="partner_id" string="Contact" />
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="oe_kanban_bottom_right float-end">
+                                            <field name="user_id" widget="many2one_avatar_user" />
+                                        </div>
+                                    </div>
+                                </div>
+
+                            <button class="oe_stat_button"
+                                name="action_open_budget" type="object"
+                                icon="fa-tasks">
+                                <field string="Items" name="task_count" widget="statinfo" />
+                            </button>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+
+        <record id="budged_action" model="ir.actions.act_window">
+            <field name="name">Construction Budget</field>
+            <field name="res_model">project.project</field>
+            <field name="view_mode">kanban,list,form</field>
+            <field name="domain">[('is_budget_construction', '=', 1),('is_a_buget_template', '=', False)]</field>
+            <field name="context">{'default_is_budget_construction': 1, 'default_is_a_buget_template': 0}</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">Create the first budget</p>
+            </field>
+        </record>
+
+        <record id="budged_template_action_server" model="ir.actions.server">
+            <field name="name">Abrir Primer Registro Activo</field>
+            <field name="state">code</field>
+            <field name="model_id" ref="project.model_project_project"/>
+            <field name="code">
+<![CDATA[
+registro = env['project.project'].search([('is_a_buget_template', '=', True)], order="id", limit=1)
+if registro:
+    action = registro.action_open_budget()
+else:
+    registro = env['project.project'].create({'name': 'Budget Template', 'is_a_buget_template': True})
+    action = registro.action_open_budget()
+]]>
+            </field>
+        </record>
+        <record id="project.open_view_project_all" model="ir.actions.act_window">
+            <field name="domain">[('is_a_buget_template', '=', False)]</field>
+        </record>
+        
+        <record model="ir.actions.act_window.view" id="action_budged_action_kanban">
+            <field name="sequence" eval="1" />
+            <field name="view_mode">kanban</field>
+            <field name="view_id" ref="s_budget_construction.construction_budget_view_kanban" />
+            <field name="act_window_id" ref="s_budget_construction.budged_action" />
+        </record>
+        <record model="ir.actions.act_window.view" id="action_budged_action_tree">
+            <field name="sequence" eval="2" />
+            <field name="view_mode">list</field>
+            <field name="view_id" ref="s_budget_construction.construction_budget_view_tree" />
+            <field name="act_window_id" ref="s_budget_construction.budged_action" />
+        </record>
+        <record model="ir.actions.act_window.view" id="action_budged_action_form">
+            <field name="sequence" eval="3" />
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="s_budget_construction.construction_budget_view_form" />
+            <field name="act_window_id" ref="s_budget_construction.budged_action" />
+        </record>
+    </data>
+</odoo>

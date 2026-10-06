@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="s_budget_construction.BudgetItemListRenderer" t-inherit="web.ListRenderer" t-inherit-mode="primary">
+
+    </t>
+
+    <t t-name="s_budget_construction.BudgetItemListRenderer.RecordRow" t-inherit="web.ListRenderer.RecordRow" t-inherit-mode="primary">
+
+    </t>
+</templates>

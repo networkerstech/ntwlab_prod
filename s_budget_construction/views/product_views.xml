@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="product_budget_view_form" model="ir.ui.view">
+            <field name="name">product.budget.view.form</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_form_view" />
+            <field name="arch" type="xml">
+                <div name="options" position="inside">
+                    <span class="d-inline-block">
+                        <field name="build_ok" />
+                        <label for="build_ok" />
+                        <field name="tool_ok" />
+                        <label for="tool_ok" />
+                        <field name="machinery_ok" />
+                        <label for="machinery_ok" />
+                    </span>
+                </div>
+                <xpath expr="//sheet[@name='product_form']/notebook[1]/page[@name='general_information']/group[1]/group[@name='group_standard_price']/label[2]" position="replace">
+                    <label for="standard_price" string="Cost" invisible="product_variant_count &gt; 1 and not is_product_variant or machinery_ok"/>
+                    <label for="standard_price" string="Rent" invisible="product_variant_count &gt; 1 and not is_product_variant or not machinery_ok"/>
+                </xpath>
+
+                <field name="type" position="after">
+                    <field name="supply_type" invisible="not build_ok"/>
+                    <field name="supply_type_id" invisible="1"/>
+                </field>
+
+                <field name="categ_id" position="before">
+                    <field name="use_percent" widget="percentage" invisible="not tool_ok" style="width:10%"/>
+                </field>
+
+                <page name="inventory" position="after">
+                    <page string="Construction budget" name="construction_budget"
+                        invisible="not build_ok">
+                        <group>
+                            <group>
+                            </group>
+                            <group>
+                            </group>
+                        </group>
+                    </page>
+                </page>
+            </field>
+        </record>
+
+        <record id="produc_template_inherit_view" model="ir.ui.view">
+            <field name="name">product.template.view.search.inherit</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_search_view" />
+            <field name="arch" type="xml">
+                <xpath expr="//filter[@name='filter_to_sell']" position="after">
+                    <filter string="Can use in construction" name="filter_to_use_in_building"
+                        domain="[('build_ok', '=', True)]" />
+                    <filter string="Tool" name="filter_tool_ok"
+                        domain="[('tool_ok', '=', True)]" />
+                    <filter string="Machinery" name="filter_machinery_ok"
+                        domain="[('machinery_ok', '=', True)]" />
+                </xpath>
+            </field>
+        </record>
+
+        <record id="products_for_building_action" model="ir.actions.act_window">
+            <field name="name">Products</field>
+            <field name="res_model">product.template</field>
+            <field name="view_mode">list,form</field>
+            <field name="domain">[]</field>
+            <field name="context">{
+                'search_default_filter_to_use_in_building': True,
+                'default_build_ok': True}</field>
+        </record>
+
+        <record id="tools_action" model="ir.actions.act_window">
+            <field name="name">Tools</field>
+            <field name="res_model">product.template</field>
+            <field name="view_mode">list,form</field>
+            <field name="domain">[]</field>
+            <field name="context">{
+                'search_default_filter_tool_ok': True,
+                'default_tool_ok': True}</field>
+        </record>
+
+         <record id="machinery_action" model="ir.actions.act_window">
+            <field name="name">Machinery</field>
+            <field name="res_model">product.template</field>
+            <field name="view_mode">list,form</field>
+            <field name="domain">[]</field>
+            <field name="context">{
+                'search_default_filter_machinery_ok': True,
+                'default_machinery_ok': True}</field>
+        </record>
+    
+         <record id="transport_action" model="ir.actions.act_window">
+            <field name="name">Transport</field>
+            <field name="res_model">fleet.vehicle</field>
+            <field name="view_mode">list,form</field>
+            <field name="domain">[]</field>
+            <field name="context">{
+                'search_default_filter_build_ok': True,
+                'search_default_filter_supply_type': "transport_cost",
+                'default_supply_type': "transport_cost",
+                'default_build_ok': True}</field>
+        </record>
+        <record id="view_stock_product_template_tree" model="ir.ui.view">
+            <field name="name">product.template.stock.tree.inherit</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_tree_view"/>
+            <field name="arch" type="xml">
+                <field name="default_code" position="before">
+                    <field name="supply_type" />
+                </field>
+            </field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates>
+    <t t-name="s_budget_construction.SearchPanelContent" t-inherit="web.SearchPanelContent" t-inherit-mode="primary">
+        <xpath expr="//section" position="attributes">
+            <attribute name="t-att-data-section-id">section.id</attribute>
+        </xpath>
+    </t>
+
+    <t t-name="s_budget_construction.SearchPanel.Regular" t-inherit="s_budget_construction.SearchPanelContent" t-inherit-mode="primary"/>
+
+    <t t-name="s_budget_construction.SearchPanel.Category" t-inherit="web.SearchPanel.Category" t-inherit-mode="primary">
+        <xpath expr="//li[contains(@class, 'o_search_panel_category_value')]" position="attributes">
+            <attribute name="class" add="pe-0" separator=" "/>
+            <attribute name="t-att-title">value.display_name</attribute>
+            <attribute name="t-att-data-value-id">valueId</attribute>
+        </xpath>
+    </t>
+
+    <t t-name="s_budget_construction.SearchPanel.FiltersGroup" t-inherit="web.SearchPanel.FiltersGroup" t-inherit-mode="primary">
+        <xpath expr="//div//label//span[hasclass('o_search_panel_counter')]" position="attributes">
+            <attribute name="class" add="ms-2 me-3" remove="mx-2" separator=" "/>
+        </xpath>
+    </t>
+
+    <!--
+        web.SearchPanel.Small (mobile) calls web.SearchPanel.Section directly and no
+        longer goes through web.SearchPanelContent since Odoo 19, so it already picks up
+        our Category/FiltersGroup overrides via constructor.subTemplates. No override needed.
+    -->
+    <t t-name="s_budget_construction.SearchPanel" t-inherit="web.SearchPanel" t-inherit-mode="primary">
+        <xpath expr="//t[@t-call='web.SearchPanel.Regular']" position="attributes">
+            <attribute name="t-call">s_budget_construction.SearchPanel.Regular</attribute>
+        </xpath>
+    </t>
+</templates>

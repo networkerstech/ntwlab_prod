@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- SUPPLY TYPE -->
+    <record id="budget_supply_type_view_form" model="ir.ui.view">
+        <field name="name">s.budget.const.supply.type.view.form</field>
+        <field name="model">s.budget.const.supply.type</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group name="main">
+                        <field name="parent_id" invisible="1" />
+
+                        <field name="code" />
+                        <field name="name" />
+                        <field name="supply_type" />
+                    </group>
+                    <notebook invisible="parent_id">
+                        <page name="children" string="Specific">
+                            <field name="child_ids" editable="bottom">
+                                <list editable="bottom">
+                                    <field name="supply_type" column_invisible="1" />
+
+                                    <field name="code" />
+                                    <field name="name" />
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="budget_supply_type_view_tree" model="ir.ui.view">
+        <field name="name">s.budget.const.supply.type.view.tree</field>
+        <field name="model">s.budget.const.supply.type</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="code" />
+                <field name="name" />
+                <field name="supply_type" />
+            </list>
+        </field>
+    </record>
+    <record id="budget_supply_type_view_search" model="ir.ui.view">
+        <field name="name">s.budget.const.supply.type.view.search</field>
+        <field name="model">s.budget.const.supply.type</field>
+        <field name="arch" type="xml">
+            <search string="">
+                <field name="code" />
+                <field name="name" />
+                <field name="supply_type" />
+            </search>
+        </field>
+    </record>
+    <record id="budget_supply_type_action" model="ir.actions.act_window">
+        <field name="name">Supply type</field>
+        <field name="res_model">s.budget.const.supply.type</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[("parent_id", "=", False)]</field>
+        <field name="context">{}</field>
+    </record>
+
+    <!-- SUPPLY -->
+    <record id="budget_supply_view_form" model="ir.ui.view">
+        <field name="name">s.budget.const.supply.view.form</field>
+        <field name="model">s.budget.const.supply</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group name="main">
+                        <group>
+                            <field name="code" />
+                            <field name="description" />
+                            <field name="supply_type_id" />
+                            <field name="supply_type" />
+                            <field name="product_template_id" invisible="supply_type not in ['material', 'tools', 'machinery']"/>
+                            <field name="fleet_vehicle_id" invisible="supply_type not in ['transport_cost']"/>
+                            <field name="budget_gang_id" invisible="supply_type not in ['work_force']"/>
+                        </group>
+                        <group>
+                            <field name="uom_id" required="1" />
+                            <field name="currency_id" required="1" />
+                            <field name="price_unit" required="1" />
+                        </group>
+                    </group>
+                    <notebook invisible="supply_type != 'auxiliaries'">
+                        <page name="material_componets" string="Materials">
+                            <field name="component_material_ids" context="{'is_material': True, 'default_supply_type': 'material'}">
+                                 <list editable="bottom" context="{'is_material': True, 'default_supply_type': 'material'}">
+                                    <field name="supply_code_aux"/>
+                                    <field name="product_template_id" domain="[('build_ok', '=', True), ('supply_type', '=', 'material')]"/>
+                                    <field name="budget_gang_id" column_invisible="1"/>
+                                    <field name="supply_type"  readonly="1" force_save="1"/>
+                                    <field name="description"/>
+                                    <field name="quantity"/>
+                                    <field name="uom_id"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page name="work_force_components" string="Work force">
+                            <field name="component_work_force_ids" context="{'is_work_force': True, 'default_supply_type': 'work_force'}">
+                                <list editable="bottom" context="{'is_work_force': True, 'default_supply_type': 'work_force'}">
+                                    <field name="supply_code_aux"/>
+                                    <field name="budget_gang_id" domain="[('build_ok', '=', True), ('supply_type', '=', 'work_force')]"/>
+                                    <field name="product_template_id" column_invisible="1"/>
+                                    <field name="supply_type" readonly="1" force_save="1"/>
+                                    <field name="description"/>
+                                    <field name="quantity"/>
+                                    <field name="uom_id"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page name="tool_componets" string="Tools">
+                            <field name="component_tools_ids" context="{'is_tools': True, 'default_supply_type': 'tools'}">
+                                 <list editable="bottom" context="{'is_tools': True, 'default_supply_type': 'tools'}">
+                                    <field name="supply_code_aux"/>
+                                    <field name="product_template_id" domain="[('build_ok', '=', True), ('supply_type', '=', 'tools')]"/>
+                                    <field name="budget_gang_id" column_invisible="1"/>
+                                    <field name="supply_type" readonly="1" force_save="1"/>
+                                    <field name="description"/>
+                                    <field name="quantity"/>
+                                    <field name="uom_id"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page name="machinery_componets" string="Machinery">
+                            <field name="component_machinery_ids" context="{'is_machinery': True, 'default_supply_type': 'machinery'}">
+                                <list editable="bottom" context="{'is_machinery': True, 'default_supply_type': 'machinery'}">
+                                    <field name="supply_code_aux"/>
+                                    <field name="product_template_id" domain="[('machinery_ok', '=', True), ('supply_type', '=', 'machinery')]"/>
+                                    <field name="budget_gang_id" column_invisible="1"/>
+                                    <field name="supply_type" readonly="1" force_save="1"/>
+                                    <field name="description"/>
+                                    <field name="quantity"/>
+                                    <field name="uom_id"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page name="transport_cost_componets" string="Transport cost">
+                            <field name="component_transport_cost_ids" context="{'is_transport_cost': True, 'default_supply_type': 'transport_cost'}">
+                                 <list editable="bottom" context="{'is_transport_cost': True, 'default_supply_type': 'transport_cost'}">
+                                    <field name="supply_code_aux"/>
+                                    <field name="fleet_vehicle_id" domain="[('build_ok', '=', True), ('supply_type', '=', 'transport_cost')]"/>
+                                    <field name="supply_type" readonly="1" force_save="1"/>
+                                    <field name="description"/>
+                                    <field name="quantity"/>
+                                    <field name="uom_id"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="budget_supply_view_tree" model="ir.ui.view">
+        <field name="name">s.budget.const.supply.view.tree</field>
+        <field name="model">s.budget.const.supply</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="code" />
+                <field name="description" />
+                <field name="product_template_id" />
+                <field name="fleet_vehicle_id" />
+                <field name="budget_gang_id" />
+                <field name="supply_type_id" />
+                <field name="uom_id" />
+                <field name="currency_id" />
+                <field name="price_unit" />
+            </list>
+        </field>
+    </record>
+
+    <record id="budget_supply_view_search" model="ir.ui.view">
+        <field name="name">s.budget.const.supply.view.search</field>
+        <field name="model">s.budget.const.supply</field>
+        <field name="arch" type="xml">
+            <search string="">
+                <field name="code" />
+                <field name="description" />
+                <field name="supply_type_id" />
+            </search>
+        </field>
+    </record>
+
+    <record id="budget_supply_view_search_panel" model="ir.ui.view">
+        <field name="name">s.budget.const.supply.view.search.panel</field>
+        <field name="model">s.budget.const.supply</field>
+        <field name="inherit_id" ref="s_budget_construction.budget_supply_view_search" />
+        <field name="mode">primary</field>
+        <field name="priority">100</field>
+        <field name="arch" type="xml">
+            <search string="" position="inside">
+                <searchpanel>
+                    <field
+                        string=""
+                        name="supply_type_id"
+                        select="one"
+                        hierarchize="1"
+                        expand="1"
+                    />
+                </searchpanel>
+            </search>
+        </field>
+    </record>
+
+    <record id="budged_supply_action" model="ir.actions.act_window">
+        <field name="name">Budget supply</field>
+        <field name="res_model">s.budget.const.supply</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="s_budget_construction.budget_supply_view_search_panel"/>
+        <field name="domain">[]</field>
+        <field name="context">{}</field>
+    </record>
+</odoo>

@@ -1,0 +1,758 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* s_budget_construction
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-09-07 17:15+0000\n"
+"PO-Revision-Date: 2024-09-07 13:17-0400\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: es_MX\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.5\n"
+
+#. module: s_budget_construction
+#: model_terms:ir.ui.view,arch_db:s_budget_construction.budget_concept_component_view_form
+#: model_terms:ir.ui.view,arch_db:s_budget_construction.budget_concept_view_form
+msgid "All"
+msgstr "Todo"
+
+#. module: s_budget_construction
+#: model_terms:ir.ui.view,arch_db:s_budget_construction.s_budget_pricelist_view_form
+msgid "Alls"
+msgstr "Todo"
+
+#. module: s_budget_construction
+#: model:ir.model.fields.selection,name:s_budget_construction.selection__s_budget_const_supply_type__supply_type__auxiliaries
+#: model:s.budget.const.supply.type,name:s_budget_construction.construction_supply_auxiliaries
+#: model_terms:ir.ui.view,arch_db:s_budget_construction.budget_concept_component_view_form
+#: model_terms:ir.ui.view,arch_db:s_budget_construction.budget_concept_view_form
+#: model_terms:ir.ui.view,arch_db:s_budget_construction.s_budget_pricelist_view_form
+msgid "Auxiliaries"
+msgstr "Auxiliares"
+
+#. module: s_budget_construction
+#: model:ir.model.fields,field_description:s_budget_construction.field_s_budget_const_concept__component_auxiliaries_ids
+msgid "Auxiliaries components"
+msgstr "Componentes auxiliares"
+
+#. module: s_budget_construction
+#: model:ir.model.fields,field_description:s_budget_construction.field_s_budget_const_concept_component__component_auxiliaries_ids
+#: model:ir.model.fields,field_description:s_budget_construction.field_s_budget_pricelist__pricelist_auxiliaries_ids
+msgid "Auxiliaries componets"
+msgstr "Componentes auxiliares"
+
+#. module: s_budget_construction
+#: model:ir.actions.server,name:s_budget_construction.budged_action_server
+msgid "Budged Items"
+msgstr "Elementos de presupuesto"
+
+#. module: s_budget_construction
+#: model:ir.ui.menu,name:s_budget_construction.budget_menu
+#: model:ir.ui.menu,name:s_budget_construction.budget_menu_root
+msgid "Budget"
+msgstr "Presupuesto"
+
+#. module: s_budget_construction
+#: model:ir.actions.act_window,name:s_budget_construction.budget_item_hierarchical_action
+msgid "Budget Construction Items"
+msgstr "Elementos de presupuesto"
+
+#. module: s_budget_construction
+#: model:ir.actions.act_window,name:s_budget_construction.budget_item_form_action
+msgid "Budget Items"
+msgstr "Elementos de presupuesto"
+
+#. module: s_budget_construction
+#: model:ir.actions.act_window,name:s_budget_construction.budged_template_action
+#: model:ir.ui.menu,name:s_budget_construction.budged_template_action_menu
+msgid "Budget Template"
+msgstr "Tarjeta de precio unitario"
+
+#. module: s_budget_construction
+#: model:ir.actions.act_window,name:s_budget_construction.budged_supply_action
+msgid "Budget supply"
+msgstr "Insumo de presupuesto"
+
+#. module: s_budget_construction
+#: model_terms:ir.ui.view,arch_db:s_budget_construction.s_budget_pricelist_view_form
+msgid "Calculate Consumed Quantity"
+msgstr "Calcular Cantidades Consumidas"
+
+#. module: s_budget_construction
+#: model:res.groups,name:s_budget_construction.group_price_list_user
+msgid "Can Edit Budget Price List"
+msgstr ""
+
+#. module: s_budget_construction
+#: model:res.groups,name:s_budget_construction.group_budget_template_user
+msgid "Can Edit Budget Template"
+msgstr ""
+
+#. module: s_budget_construction
+#: model:ir.model.fields,field_description:s_budget_construction.field_product_product__build_ok
+#: model:ir.model.fields,field_description:s_budget_construction.field_product_template__build_ok
+msgid "Can be used in construction"
+msgstr "Se puede usar en construcción"
+
+#. module: s_budget_construction
+#: model_terms:ir.ui.view,arch_db:s_budget_construction.produc_template_inherit_view
+msgid "Can use in building"
+msgstr "Se puede usar en construcción"
+
+#. module: s_budget_construction
+#: model_terms:ir.ui.view,arch_db:s_budget_construction.budget_concept_component_view_form
+#: model_terms:ir.ui.view,arch_db:s_budget_construction.budget_concept_view_form
+msgid "Cancelar"
+msgstr ""
+
+#. module: s_budget_construction
+#: model:ir.model.fields,field_description:s_budget_construction.field_s_budget_const_supply_type__child_ids
+msgid "Children"
+msgstr "Hijos"
+
+#. module: s_budget_construction
+#: model:ir.model.fields,field_description:s_budget_construction.field_project_task__budget_code
+#: model:ir.model.fields,field_description:s_budget_construction.field_s_budget_const_concept__code
+#: model:ir.model.fields,field_description:s_budget_construction.field_s_budget_const_concept_component__supply_code
+#: model:ir.model.fields,field_description:s_budget_construction.field_s_budget_const_supply__code
+#: model:ir.model.fields,field_description:s_budget_construction.field_s_budget_const_supply_type__code
+#: model:ir.model.fields,field_description:s_budget_construction.field_s_budget_pricelist_line__supply_code
+msgid "Code"
+msgstr "Código"
+
+#. module: s_budget_construction
+#: model:ir.model.fields,field_description:s_budget_construction.field_s_budget_pricelist__company_id
+msgid "Company"
+msgstr "Compañia"
+
+#. module: s_budget_construction
+#. odoo-python
+#: code:addons/s_budget_construction/models/budget_concept.py:0
+#, python-format
+msgid "Component"
+msgstr "Componente"
+
+#. module: s_budget_construction
+#: model:ir.actions.act_window,name:s_budget_construction.action_s_budget_const_concept_component
+#: model:ir.ui.menu,name:s_budget_construction.action_s_budget_const_concept_component_menu
+msgid "Auxiliars"
+msgstr "Auxiliares"
+
+#. module: s_budget_construction
+#: model:ir.model.fields,field_description:s_budget_construction.field_s_budget_const_concept__component_ids
+#: model:ir.model.fields,field_description:s_budget_construction.field_s_budget_const_concept__component_material_ids
+#: model:ir.model.fields,field_description:s_budget_construction.field_s_budget_const_concept_component__component_ids
+#: model:ir.model.fields,field_description:s_budget_construction.field_s_budget_const_concept_component__component_material_ids
+#: model:ir.model.fields,field_description:s_budget_construction.field_s_budget_pricelist__pricelist_material_ids
+#: model:ir.model.fields,field_description:s_budget_construction.field_s_budget_pricelist_line__component_tools_ids
+msgid "Componets"
+msgstr "Componentes"
+
+#. module: s_budget_construction
+#. odoo-javascript
+#. odoo-python
+#: code:addons/s_budget_construction/models/budget_concept.py:0
+#: code:addons/s_budget_construction/models/budget_item.py:0
+#: code:addons/s_budget_construction/static/src/views/budget_controller_mixin.xml:0
+#: model:ir.model,name:s_budget_construction.model_s_budget_const_concept
+#: model:ir.model.fields,field_description:s_budget_construction.field_project_task__concept_id
+#: model:ir.model.fields,field_description:s_budget_construction.field_s_budget_const_concept_component__concept_id
+#: model:ir.model.fields.selection,name:s_budget_construction.selection__project_task__item_type__concept
+#, python-format
+msgid "Concept"
+msgstr "Concepto"
+
+#. module: s_budget_construction
+#: model:ir.model.fields,field_description:s_budget_construction.field_project_task__concept_template_id
+#: model:ir.model.fields,field_description:s_budget_construction.field_s_budget_const_concept__concept_template_id
+msgid "Concept Template"
+msgstr "Plantilla de Concepto"
+
+#. module: s_budget_construction
+#: model:ir.model.constraint,message:s_budget_construction.constraint_s_budget_const_concept_budget_code_unique_by_project
+msgid "Concept code must be unique by budget."
+msgstr "El código del concepto debe ser único por presupuesto."
+
+#. module: s_budget_construction
+#: model:ir.model.fields,field_description:s_budget_construction.field_s_budget_const_concept_component__concept_code
+msgid "Concepto"
+msgstr ""
+
+#. module: s_budget_construction
+#: model:ir.ui.menu,name:s_budget_construction.budget_menu_config
+msgid "Configuration"
+msgstr "Configuración"
+
+#. module: s_budget_construction
+#: model:ir.actions.act_window,name:s_budget_construction.budged_action
+msgid "Construction Budget"
+msgstr "Presupuesto de construcción"
+
+#. module: s_budget_construction
+#: model:ir.model,name:s_budget_construction.model_s_budget_const_supply
+msgid "Construction Budget Supply"
+msgstr "Insumo de presupuesto de construcción"
+
+#. module: s_budget_construction
+#: model:ir.module.category,name:s_budget_construction.module_category_budget_construction
+#: model_terms:ir.ui.view,arch_db:s_budget_construction.product_budget_view_form
+msgid "Construction budget"
+msgstr "Presupuesto de construcción"
+
+#. module: s_budget_construction
+#: model:ir.model,name:s_budget_construction.model_s_budget_const_concept_component
+msgid "Construction budget componet line"
+msgstr "Línea de componente de presupuesto de construcción"
+
+#. module: s_budget_construction
+#: model_terms:ir.ui.view,arch_db:s_budget_construction.construction_budget_view_kanban
+msgid "Contact"
+msgstr "Contacto"
+
+#. module: s_budget_construction
+#. odoo-javascript
+#: code:addons/s_budget_construction/static/src/views/budget_controller_mixin.xml:0
+#, python-format
+msgid "Control panel buttons"
+msgstr "Botones del panel de control"
+
+#. module: s_budget_construction
+#: model_terms:ir.ui.view,arch_db:s_budget_construction.budget_concept_view_form
+msgid "Create Concept Template"
+msgstr "Crear Concepto Plantilla"
+
+#. module: s_budget_construction
+#: model_terms:ir.actions.act_window,help:s_budget_construction.budged_template_action
+msgid "Create a budget template"
+msgstr "Crear Tarjeta de precio unitario"
+
+#. module: s_budget_construction
+#: model_terms:ir.actions.act_window,help:s_budget_construction.budged_action
+#: model_terms:ir.actions.act_window,help:s_budget_construction.budget_item_hierarchical_action
+msgid "Create the first budget"
+msgstr "Crear el primer presupuesto"
+
+#. module: s_budget_construction
+#: model_terms:ir.actions.act_window,help:s_budget_construction.s_budget_pricelist_action
+msgid "Create the first pricelist"
+msgstr "Crear la primera Lista de Precios"
+
+#. module: s_budget_construction
+#: model:ir.model.fields,field_description:s_budget_construction.field_s_budget_const_concept__create_uid
+#: model:ir.model.fields,field_description:s_budget_construction.field_s_budget_const_concept_component__create_uid
+#: model:ir.model.fields,field_description:s_budget_construction.field_s_budget_const_supply__create_uid
+#: model:ir.model.fields,field_description:s_budget_construction.field_s_budget_const_supply_type__create_uid
+#: model:ir.model.fields,field_description:s_budget_construction.field_s_budget_pricelist__create_uid
+#: model:ir.model.fields,field_description:s_budget_construction.field_s_budget_pricelist_line__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: s_budget_construction
+#: model:ir.model.fields,field_description:s_budget_construction.field_s_budget_const_concept__create_date
+#: model:ir.model.fields,field_description:s_budget_construction.field_s_budget_const_concept_component__create_date
+#: model:ir.model.fields,field_description:s_budget_construction.field_s_budget_const_supply__create_date
+#: model:ir.model.fields,field_description:s_budget_construction.field_s_budget_const_supply_type__create_date
+#: model:ir.model.fields,field_description:s_budget_construction.field_s_budget_pricelist__create_date
+#: model:ir.model.fields,field_description:s_budget_construction.field_s_budget_pricelist_line__create_date
+msgid "Created on"
+msgstr "Creado en"
+
+#. module: s_budget_construction
+#: model:ir.model.fields,field_description:s_budget_construction.field_s_budget_const_supply__currency_id
+#: model:ir.model.fields,field_description:s_budget_construction.field_s_budget_pricelist__currency_id
+#: model:ir.model.fields,field_description:s_budget_construction.field_s_budget_pricelist_line__currency_id
+msgid "Currency"
+msgstr "Moneda"
+
+#. module: s_budget_construction
+#: model:ir.model.fields,field_description:s_budget_construction.field_project_task__componens
+msgid "Datos"
+msgstr ""
+
+#. module: s_budget_construction
+#: model:ir.model.fields,field_description:s_budget_construction.field_project_task__budget_description
+#: model:ir.model.fields,field_description:s_budget_construction.field_s_budget_const_concept__description
+#: model:ir.model.fields,field_description:s_budget_construction.field_s_budget_const_concept_component__description
+#: model:ir.model.fields,field_description:s_budget_construction.field_s_budget_const_supply__description
+msgid "Description"
+msgstr "Descripción"
+
+#. module: s_budget_construction
+#: model:ir.model.fields,field_description:s_budget_construction.field_s_budget_const_concept__display_name
+#: model:ir.model.fields,field_description:s_budget_construction.field_s_budget_const_concept_component__display_name
+#: model:ir.model.fields,field_description:s_budget_construction.field_s_budget_const_supply__display_name
+#: model:ir.model.fields,field_description:s_budget_construction.field_s_budget_pricelist__display_name
+#: model:ir.model.fields,field_description:s_budget_construction.field_s_budget_pricelist_line__display_name
+msgid "Display Name"
+msgstr "Nombre mostrado"
+
+#. module: s_budget_construction
+#: model:ir.model.fields.selection,name:s_budget_construction.selection__s_budget_const_supply_type__supply_type__machinery
+#: model:s.budget.const.supply.type,name:s_budget_construction.construction_supply_equipment
+msgid "Equipment and machinery"
+msgstr "Equipo y maquinaria"
+
+#. module: s_budget_construction
+#: model:ir.model.fields,field_description:s_budget_construction.field_s_budget_const_supply_type__display_name
+msgid "Full name"
+msgstr "Nombre completo"
+
+#. module: s_budget_construction
+#. odoo-javascript
+#: code:addons/s_budget_construction/static/src/views/budget_controller_mixin.xml:0
+#: model:ir.model.fields.selection,name:s_budget_construction.selection__project_task__item_type__grouper
+#, python-format
+msgid "Grouper"
+msgstr "Agrupador"
+
+#. module: s_budget_construction
+#: model:ir.model.fields,field_description:s_budget_construction.field_s_budget_const_concept__id
+#: model:ir.model.fields,field_description:s_budget_construction.field_s_budget_const_concept_component__id
+#: model:ir.model.fields,field_description:s_budget_construction.field_s_budget_const_supply__id
+#: model:ir.model.fields,field_description:s_budget_construction.field_s_budget_const_supply_type__id
+#: model:ir.model.fields,field_description:s_budget_construction.field_s_budget_pricelist__id
+#: model:ir.model.fields,field_description:s_budget_construction.field_s_budget_pricelist_line__id
+#: model_terms:ir.ui.view,arch_db:s_budget_construction.construction_budget_view_form
+#: model_terms:ir.ui.view,arch_db:s_budget_construction.construction_budget_view_kanban
+msgid "ID"
+msgstr ""
+
+#. module: s_budget_construction
+#: model:ir.model.fields,field_description:s_budget_construction.field_s_budget_pricelist__id_budget
+msgid "Id Budget"
+msgstr "Presupuesto ID"
+
+#. module: s_budget_construction
+#: model_terms:ir.ui.view,arch_db:s_budget_construction.budget_concept_view_form
+msgid ""
+"In the system there is no template with this code, once you finish "
+"configuring this you can press the create template button to store it."
+msgstr ""
+"En el sistema no existe una plantilla con este código, una vez configurado "
+"puede presionar el botón para crear la misma."
+
+#. module: s_budget_construction
+#: model:ir.model.fields,field_description:s_budget_construction.field_project_project__is_a_buget_template
+#: model:ir.model.fields,field_description:s_budget_construction.field_project_task__is_a_buget_template
+#: model:ir.model.fields,field_description:s_budget_construction.field_s_budget_const_concept__is_a_buget_template
+#: model:ir.model.fields,field_description:s_budget_construction.field_s_budget_pricelist__is_a_buget_template
+msgid "Is A Buget Template"
+msgstr "Es un Presupuesto Plantilla"
+
+#. module: s_budget_construction
+#: model:ir.model.fields,field_description:s_budget_construction.field_project_project__is_budget_construction
+msgid "Is BUdget Construction"
+msgstr "Es presupuesto de construcción"
+
+#. module: s_budget_construction
+#: model:ir.model.fields,field_description:s_budget_construction.field_project_task__item_type
+msgid "Item type"
+msgstr "Tipo de elemento"
+
+#. module: s_budget_construction
+#: model_terms:ir.ui.view,arch_db:s_budget_construction.budget_item_view_search
+#: model_terms:ir.ui.view,arch_db:s_budget_construction.construction_budget_view_form
+#: model_terms:ir.ui.view,arch_db:s_budget_construction.construction_budget_view_kanban
+msgid "Items"
+msgstr "Elementos"
+
+#. module: s_budget_construction
+#: model:ir.model.fields,field_description:s_budget_construction.field_s_budget_const_concept__write_uid
+#: model:ir.model.fields,field_description:s_budget_construction.field_s_budget_const_concept_component__write_uid
+#: model:ir.model.fields,field_description:s_budget_construction.field_s_budget_const_supply__write_uid
+#: model:ir.model.fields,field_description:s_budget_construction.field_s_budget_const_supply_type__write_uid
+#: model:ir.model.fields,field_description:s_budget_construction.field_s_budget_pricelist__write_uid
+#: model:ir.model.fields,field_description:s_budget_construction.field_s_budget_pricelist_line__write_uid
+msgid "Last Updated by"
+msgstr "Última actualización por"
+
+#. module: s_budget_construction
+#: model:ir.model.fields,field_description:s_budget_construction.field_s_budget_const_concept__write_date
+#: model:ir.model.fields,field_description:s_budget_construction.field_s_budget_const_concept_component__write_date
+#: model:ir.model.fields,field_description:s_budget_construction.field_s_budget_const_supply__write_date
+#: model:ir.model.fields,field_description:s_budget_construction.field_s_budget_const_supply_type__write_date
+#: model:ir.model.fields,field_description:s_budget_construction.field_s_budget_pricelist__write_date
+#: model:ir.model.fields,field_description:s_budget_construction.field_s_budget_pricelist_line__write_date
+msgid "Last Updated on"
+msgstr "Última actualización en"
+
+#. module: s_budget_construction
+#: model:ir.model.fields,help:s_budget_construction.field_project_task__concept_id
+msgid "Like inherits"
+msgstr "Similar al inherits"
+
+#. module: s_budget_construction
+#: model_terms:ir.ui.view,arch_db:s_budget_construction.budget_concept_component_view_form
+#: model_terms:ir.ui.view,arch_db:s_budget_construction.budget_concept_view_form
+#: model_terms:ir.ui.view,arch_db:s_budget_construction.s_budget_pricelist_view_form
+msgid "Machinery"
+msgstr "Maquinaria"
+
+#. module: s_budget_construction
+#: model:ir.model.fields,field_description:s_budget_construction.field_s_budget_const_concept__component_machinery_ids
+#: model:ir.model.fields,field_description:s_budget_construction.field_s_budget_const_concept_component__component_machinery_ids
+#: model:ir.model.fields,field_description:s_budget_construction.field_s_budget_pricelist__pricelist_machinery_ids
+msgid "Machinery componets"
+msgstr "Componentes maquinaria"
+
+#. module: s_budget_construction
+#: model:ir.module.category,description:s_budget_construction.module_category_budget_construction
+msgid "Manage construction budgets"
+msgstr "Administrar presupuestos de construcción"
+
+#. module: s_budget_construction
+#: model:res.groups,name:s_budget_construction.group_manager
+msgid "Manager"
+msgstr "Administrador"
+
+#. module: s_budget_construction
+#: model:ir.model.fields.selection,name:s_budget_construction.selection__s_budget_const_supply_type__supply_type__material
+#: model:s.budget.const.supply.type,name:s_budget_construction.construction_supply_materials
+#: model_terms:ir.ui.view,arch_db:s_budget_construction.budget_concept_component_view_form
+#: model_terms:ir.ui.view,arch_db:s_budget_construction.budget_concept_view_form
+#: model_terms:ir.ui.view,arch_db:s_budget_construction.s_budget_pricelist_view_form
+msgid "Materials"
+msgstr "Materiales"
+
+#. module: s_budget_construction
+#: model:ir.model.fields,field_description:s_budget_construction.field_s_budget_const_concept__name
+#: model:ir.model.fields,field_description:s_budget_construction.field_s_budget_const_supply_type__name
+#: model:ir.model.fields,field_description:s_budget_construction.field_s_budget_pricelist__name
+#: model_terms:ir.ui.view,arch_db:s_budget_construction.budget_item_view_tree
+msgid "Name"
+msgstr "Nombre"
+
+#. module: s_budget_construction
+#: model_terms:ir.ui.view,arch_db:s_budget_construction.budget_concept_component_view_tree
+#: model_terms:ir.ui.view,arch_db:s_budget_construction.budget_item_view_tree
+msgid "Open"
+msgstr "Abrir"
+
+#. module: s_budget_construction
+#: model_terms:ir.ui.view,arch_db:s_budget_construction.construction_budget_view_kanban
+msgid "PROJECT ID:"
+msgstr "ID PROYECTO:"
+
+#. module: s_budget_construction
+#: model:ir.model.fields,field_description:s_budget_construction.field_s_budget_const_concept_component__parent_code
+#: model:ir.model.fields,field_description:s_budget_construction.field_s_budget_const_concept_component__parent_id
+#: model:ir.model.fields,field_description:s_budget_construction.field_s_budget_const_supply_type__parent_id
+msgid "Parent"
+msgstr "Padre"
+
+#. module: s_budget_construction
+#: model:ir.model.fields,field_description:s_budget_construction.field_s_budget_const_supply_type__parent_code
+msgid "Parent Code"
+msgstr ""
+
+#. module: s_budget_construction
+#: model:ir.model.fields,field_description:s_budget_construction.field_project_project__percent_to_price
+msgid "Percent to Calculate Price"
+msgstr "Porciento para cálculo de precio"
+
+#. module: s_budget_construction
+#: model:ir.model.fields,field_description:s_budget_construction.field_s_budget_pricelist_line__price
+msgid "Price"
+msgstr "Precio"
+
+#. module: s_budget_construction
+#: model:ir.model.fields,field_description:s_budget_construction.field_project_project__price_list_id
+#: model:ir.model.fields,field_description:s_budget_construction.field_s_budget_const_concept__price_list_id
+#: model:ir.model.fields,field_description:s_budget_construction.field_s_budget_const_concept_component__concept_price_list_id
+#: model:ir.model.fields,field_description:s_budget_construction.field_s_budget_const_concept_component__price_list_id
+#: model:ir.model.fields,field_description:s_budget_construction.field_s_budget_pricelist_line__price_list_id
+msgid "Price List"
+msgstr "Lista de Precio"
+
+#. module: s_budget_construction
+#: model:ir.model.fields,field_description:s_budget_construction.field_s_budget_pricelist_line__price_total
+msgid "Price Total"
+msgstr "Precio Total"
+
+#. module: s_budget_construction
+#: model:ir.model.fields,field_description:s_budget_construction.field_project_task__budget_price_unit
+msgid "Price Unit"
+msgstr "Precio unitario"
+
+#. module: s_budget_construction
+#: model:ir.model.fields,field_description:s_budget_construction.field_project_task__budget_price_total
+#: model:ir.model.fields,field_description:s_budget_construction.field_s_budget_const_concept_component__price_total
+msgid "Price total"
+msgstr "Precio total"
+
+#. module: s_budget_construction
+#: model:ir.model.fields,field_description:s_budget_construction.field_s_budget_const_concept__price_unit
+#: model:ir.model.fields,field_description:s_budget_construction.field_s_budget_const_concept__price_unit_aux
+#: model:ir.model.fields,field_description:s_budget_construction.field_s_budget_const_concept_component__price_unit
+#: model:ir.model.fields,field_description:s_budget_construction.field_s_budget_const_supply__price_unit
+msgid "Price unit"
+msgstr "Precio unitario"
+
+#. module: s_budget_construction
+#: model:ir.actions.act_window,name:s_budget_construction.s_budget_pricelist_action
+#: model:ir.model,name:s_budget_construction.model_s_budget_pricelist
+#: model:ir.ui.menu,name:s_budget_construction.budget_pricelist_menu
+msgid "Pricelist"
+msgstr "Lista de Precio"
+
+#. module: s_budget_construction
+#: model:ir.model,name:s_budget_construction.model_s_budget_pricelist_line
+#: model:ir.model.fields,field_description:s_budget_construction.field_s_budget_const_concept_component__pricelist_line_id
+msgid "Pricelist Line"
+msgstr "Linea de Lista de Precio"
+
+#. module: s_budget_construction
+#: model:ir.model.fields,field_description:s_budget_construction.field_s_budget_pricelist__pricelist_line_ids
+msgid "Pricelist Lines"
+msgstr "Linea de Lista de Precio"
+
+#. module: s_budget_construction
+#: model_terms:ir.ui.view,arch_db:s_budget_construction.s_budget_pricelist_view_form
+msgid "Pricelist Rules"
+msgstr "Regla de Lista de Precio"
+
+#. module: s_budget_construction
+#: model:ir.model,name:s_budget_construction.model_product_template
+msgid "Product"
+msgstr "Producto"
+
+#. module: s_budget_construction
+#: model:ir.actions.act_window,name:s_budget_construction.products_for_building_action
+#: model:ir.ui.menu,name:s_budget_construction.product_menu
+msgid "Products"
+msgstr "Productos"
+
+#. module: s_budget_construction
+#: model:ir.model.fields,field_description:s_budget_construction.field_s_budget_const_concept_component__proj_id
+msgid "Proj"
+msgstr ""
+
+#. module: s_budget_construction
+#: model:ir.model,name:s_budget_construction.model_project_project
+#: model:ir.model.fields,field_description:s_budget_construction.field_s_budget_const_concept__project_id
+msgid "Project"
+msgstr "Proyecto"
+
+#. module: s_budget_construction
+#: model_terms:ir.ui.view,arch_db:s_budget_construction.construction_budget_view_kanban
+msgid "Project Manager"
+msgstr "Administrador de proyecto"
+
+#. module: s_budget_construction
+#: model_terms:ir.ui.view,arch_db:s_budget_construction.construction_budget_view_kanban
+msgid "Project Name"
+msgstr "Nombre del proyecto"
+
+#. module: s_budget_construction
+#: model:ir.model.fields,field_description:s_budget_construction.field_project_task__budget_qty
+#: model:ir.model.fields,field_description:s_budget_construction.field_s_budget_const_concept_component__quantity
+#: model:ir.model.fields,field_description:s_budget_construction.field_s_budget_pricelist_line__quantity
+msgid "Quantity"
+msgstr "Cantidad"
+
+#. module: s_budget_construction
+#: model:ir.model.fields,field_description:s_budget_construction.field_s_budget_pricelist_line__quantity_used
+msgid "Quantity Used"
+msgstr "Cantidad Utilizada"
+
+#. module: s_budget_construction
+#: model_terms:ir.ui.view,arch_db:s_budget_construction.budget_concept_component_view_form
+msgid "Save and Close"
+msgstr "Guardar y Cerrar"
+
+#. module: s_budget_construction
+#: model_terms:ir.ui.view,arch_db:s_budget_construction.budget_concept_component_view_form
+#: model_terms:ir.ui.view,arch_db:s_budget_construction.budget_concept_view_form
+msgid "Save and Continue"
+msgstr "Guardar y Continuar"
+
+#. module: s_budget_construction
+#: model_terms:ir.ui.view,arch_db:s_budget_construction.budget_supply_type_view_form
+msgid "Specific"
+msgstr "Específico"
+
+#. module: s_budget_construction
+#: model:ir.model.fields.selection,name:s_budget_construction.selection__s_budget_const_supply_type__supply_type__sub_contract
+#: model:s.budget.const.supply.type,name:s_budget_construction.construction_supply_sub_contract
+msgid "Sub contract"
+msgstr "Sub contrato"
+
+#. module: s_budget_construction
+#: model:ir.model.fields,field_description:s_budget_construction.field_s_budget_pricelist_line__supply_id
+msgid "Suply"
+msgstr "Suministro"
+
+#. module: s_budget_construction
+#: model:ir.ui.menu,name:s_budget_construction.budged_supply_menu
+msgid "Supplies"
+msgstr "Suministros"
+
+#. module: s_budget_construction
+#: model:ir.model.fields,field_description:s_budget_construction.field_s_budget_const_concept_component__supply_id
+msgid "Supply"
+msgstr "Suministro"
+
+#. module: s_budget_construction
+#: model:ir.model,name:s_budget_construction.model_s_budget_const_supply_type
+#: model:ir.ui.menu,name:s_budget_construction.budged_supply_type_menu
+msgid "Supply Type"
+msgstr "Tipo de suministro"
+
+#. module: s_budget_construction
+#: model:ir.actions.act_window,name:s_budget_construction.budget_supply_type_action
+#: model:ir.model.fields,field_description:s_budget_construction.field_product_product__supply_type
+#: model:ir.model.fields,field_description:s_budget_construction.field_product_product__supply_type_id
+#: model:ir.model.fields,field_description:s_budget_construction.field_product_template__supply_type
+#: model:ir.model.fields,field_description:s_budget_construction.field_product_template__supply_type_id
+#: model:ir.model.fields,field_description:s_budget_construction.field_s_budget_const_supply__supply_type_id
+msgid "Supply type"
+msgstr "Tipo de suministro"
+
+#. module: s_budget_construction
+#: model:ir.model,name:s_budget_construction.model_project_task
+msgid "Task"
+msgstr "Tarea"
+
+#. module: s_budget_construction
+#: model:ir.model.fields,field_description:s_budget_construction.field_s_budget_const_concept__tasks_ids
+msgid "Tasks"
+msgstr "Tareas"
+
+#. module: s_budget_construction
+#: model:ir.model.fields,field_description:s_budget_construction.field_project_task__template_code
+#: model:ir.model.fields,field_description:s_budget_construction.field_project_task__template_code_aux
+msgid "Template Code"
+msgstr "Código de Plantilla"
+
+#. module: s_budget_construction
+#: model:ir.model.constraint,message:s_budget_construction.constraint_s_budget_pricelist_line_name_uniq
+msgid "This Priceline is duplicated"
+msgstr "Esta linea de precio esta duplicada"
+
+#. module: s_budget_construction
+#: model:ir.model.fields.selection,name:s_budget_construction.selection__s_budget_const_supply_type__supply_type__tools
+#: model:s.budget.const.supply.type,name:s_budget_construction.construction_supply_tools
+#: model_terms:ir.ui.view,arch_db:s_budget_construction.budget_concept_component_view_form
+#: model_terms:ir.ui.view,arch_db:s_budget_construction.budget_concept_view_form
+#: model_terms:ir.ui.view,arch_db:s_budget_construction.s_budget_pricelist_view_form
+msgid "Tools"
+msgstr "Herramientas"
+
+#. module: s_budget_construction
+#: model:ir.model.fields,field_description:s_budget_construction.field_s_budget_const_concept__component_tools_ids
+#: model:ir.model.fields,field_description:s_budget_construction.field_s_budget_const_concept_component__component_tools_ids
+#: model:ir.model.fields,field_description:s_budget_construction.field_s_budget_pricelist__pricelist_tools_ids
+msgid "Tools componets"
+msgstr "Componentes herramientas"
+
+#. module: s_budget_construction
+#: model_terms:ir.ui.view,arch_db:s_budget_construction.budget_item_view_tree
+msgid "Total"
+msgstr ""
+
+#. module: s_budget_construction
+#: model:ir.model.fields,field_description:s_budget_construction.field_project_project__total_cost
+#: model:ir.model.fields,field_description:s_budget_construction.field_s_budget_pricelist__total_cost
+#: model_terms:ir.ui.view,arch_db:s_budget_construction.construction_budget_view_kanban
+msgid "Total Cost"
+msgstr "Costo Total"
+
+#. module: s_budget_construction
+#: model_terms:ir.ui.view,arch_db:s_budget_construction.construction_budget_view_kanban
+msgid "Total Cost:"
+msgstr "Costo Total:"
+
+#. module: s_budget_construction
+#: model:ir.model.fields,field_description:s_budget_construction.field_project_project__total_price
+#: model_terms:ir.ui.view,arch_db:s_budget_construction.construction_budget_view_kanban
+msgid "Total Price"
+msgstr "Precio Total"
+
+#. module: s_budget_construction
+#: model_terms:ir.ui.view,arch_db:s_budget_construction.construction_budget_view_kanban
+msgid "Total Price:"
+msgstr "Precio Total:"
+
+#. module: s_budget_construction
+#: model_terms:ir.ui.view,arch_db:s_budget_construction.budget_concept_component_view_form
+#: model_terms:ir.ui.view,arch_db:s_budget_construction.budget_concept_view_form
+#: model_terms:ir.ui.view,arch_db:s_budget_construction.s_budget_pricelist_view_form
+msgid "Transport cost"
+msgstr "Costos de transporte"
+
+#. module: s_budget_construction
+#: model:ir.model.fields,field_description:s_budget_construction.field_s_budget_const_concept__component_transport_cost_ids
+#: model:ir.model.fields,field_description:s_budget_construction.field_s_budget_const_concept_component__component_transport_cost_ids
+#: model:ir.model.fields,field_description:s_budget_construction.field_s_budget_pricelist__pricelist_transport_cost_ids
+msgid "Transport cost componets"
+msgstr "Componentes costos de transportación"
+
+#. module: s_budget_construction
+#: model:ir.model.fields.selection,name:s_budget_construction.selection__s_budget_const_supply_type__supply_type__transport_cost
+#: model:s.budget.const.supply.type,name:s_budget_construction.construction_supply_transport_cost
+msgid "Transportation cost"
+msgstr "Costo de transporte"
+
+#. module: s_budget_construction
+#: model:ir.model.fields,field_description:s_budget_construction.field_s_budget_const_concept_component__supply_type
+#: model:ir.model.fields,field_description:s_budget_construction.field_s_budget_const_supply__supply_type
+#: model:ir.model.fields,field_description:s_budget_construction.field_s_budget_const_supply_type__supply_type
+#: model:ir.model.fields,field_description:s_budget_construction.field_s_budget_pricelist_line__supply_type
+msgid "Type"
+msgstr "Tipo"
+
+#. module: s_budget_construction
+#: model:ir.model.fields,field_description:s_budget_construction.field_s_budget_const_concept__uom_id
+#: model:ir.model.fields,field_description:s_budget_construction.field_s_budget_const_concept_component__uom_id
+msgid "UM"
+msgstr ""
+
+#. module: s_budget_construction
+#: model:ir.model.fields,field_description:s_budget_construction.field_s_budget_const_supply__uom_id
+#: model:ir.model.fields,field_description:s_budget_construction.field_s_budget_pricelist_line__uom_id
+#: model:ir.model.fields,field_description:s_budget_construction.field_s_budget_pricelist_line__uom_supply_id
+msgid "Unit"
+msgstr "Unidad"
+
+#. module: s_budget_construction
+#: model:ir.model.fields,field_description:s_budget_construction.field_project_task__budget_uom_id
+msgid "Uom"
+msgstr "Um"
+
+#. module: s_budget_construction
+#: model:res.groups,name:s_budget_construction.group_user
+msgid "User"
+msgstr "Usuario"
+
+#. module: s_budget_construction
+#: model:ir.model.fields.selection,name:s_budget_construction.selection__s_budget_const_supply_type__supply_type__work_force
+#: model:s.budget.const.supply.type,name:s_budget_construction.construction_supply_work_force
+#: model_terms:ir.ui.view,arch_db:s_budget_construction.budget_concept_component_view_form
+#: model_terms:ir.ui.view,arch_db:s_budget_construction.budget_concept_view_form
+#: model_terms:ir.ui.view,arch_db:s_budget_construction.s_budget_pricelist_view_form
+msgid "Work force"
+msgstr "Mano de obra"
+
+#. module: s_budget_construction
+#: model:ir.model.fields,field_description:s_budget_construction.field_s_budget_const_concept__component_work_force_ids
+#: model:ir.model.fields,field_description:s_budget_construction.field_s_budget_const_concept_component__component_work_force_ids
+#: model:ir.model.fields,field_description:s_budget_construction.field_s_budget_pricelist__pricelist_work_force_ids
+msgid "Work force componets"
+msgstr "Componentes mano de obra"
+
+#. module: s_budget_construction
+#: model_terms:ir.ui.view,arch_db:s_budget_construction.construction_budget_view_form
+msgid "e.g. Office Party"
+msgstr ""
+
+#. module: s_budget_construction
+#: model_terms:ir.ui.view,arch_db:s_budget_construction.s_budget_pricelist_view_form
+msgid "e.g. USD Retailers"
+msgstr ""

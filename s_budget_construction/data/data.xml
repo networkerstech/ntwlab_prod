@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+        <record id="construction_supply_materials" model="s.budget.const.supply.type">
+            <field name="supply_type">material</field>
+            <field name="code">001</field>
+            <field name="name">Materials</field>
+        </record>
+        <record id="construction_supply_work_force" model="s.budget.const.supply.type">
+            <field name="supply_type">work_force</field>
+            <field name="code">002</field>
+            <field name="name">Work force</field>
+        </record>
+        <record id="construction_supply_tools" model="s.budget.const.supply.type">
+            <field name="supply_type">tools</field>
+            <field name="code">003</field>
+            <field name="name">Tools</field>
+        </record>
+        <record id="construction_supply_equipment" model="s.budget.const.supply.type">
+            <field name="supply_type">machinery</field>
+            <field name="code">004</field>
+            <field name="name">Equipment and machinery</field>
+        </record>
+        <record id="construction_supply_auxiliaries" model="s.budget.const.supply.type">
+            <field name="supply_type">auxiliaries</field>
+            <field name="code">005</field>
+            <field name="name">Auxiliaries</field>
+        </record>
+        <record id="construction_supply_transport_cost" model="s.budget.const.supply.type">
+            <field name="supply_type">transport_cost</field>
+            <field name="code">006</field>
+            <field name="name">Transportation cost</field>
+        </record>
+        <record id="construction_supply_sub_contract" model="s.budget.const.supply.type">
+            <field name="supply_type">sub_contract</field>
+            <field name="code">007</field>
+            <field name="name">Sub contract</field>
+        </record>
+    </data>
+</odoo>

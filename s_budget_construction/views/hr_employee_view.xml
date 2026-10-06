@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="hr_employee_view_form_inherit" model="ir.ui.view">
+            <field name="name">hr.employee.view.form.inherit</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr_hourly_cost.view_employee_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[@name='hourly_cost']" position="after">
+                    <label for="daily_cost"/>
+                    <div name="daily_cost">
+                        <field name="daily_cost" class="oe_inline"/>
+                    </div>
+                    <label for="weekly_cost"/>
+                    <div name="weekly_cost">
+                        <field name="weekly_cost" class="oe_inline"/>
+                    </div>
+                    <label for="monthly_cost"/>
+                    <div name="monthly_cost">
+                        <field name="monthly_cost" class="oe_inline"/>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="hr_employee_form_view" model="ir.ui.view">
+            <field name="name">hr.employee.form.view</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_form" />
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='department_id']" position="before">
+                    <field name="build_ok" />
+                    <field name="supply_type" invisible="not build_ok"/>
+                </xpath>
+                <xpath expr="//group[@name='identification_group']" position="inside">
+                    <field name="category_id" />
+                    <field name="internal_reference" />
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_employee_tree" model="ir.ui.view">
+            <field name="name">hr.employee.tree</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_tree"></field>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='department_id']" position="after">
+                    <field name="currency_id" column_invisible="1"/>
+                    <field name="hourly_cost" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                    <field name="daily_cost" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                    <field name="weekly_cost" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                    <field name="monthly_cost" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                </xpath>
+            </field>
+        </record>
+
+         <record id="hr_employee_view_search" model="ir.ui.view">
+            <field name="name">hr.employee.search.view.inherit</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_filter"/>
+            <field name="arch" type="xml">
+                <xpath expr="//filter[@name='my_team']" position="before">
+                    <filter name="filter_to_use_in_building" string="Can use in construction" domain="[('build_ok', '=', True)]"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="open_view_employee_list_my2" model="ir.actions.act_window">
+            <field name="name">Employees</field>
+            <field name="res_model">hr.employee</field>
+            <field name="view_mode">kanban,list,form,activity,graph,pivot</field>
+            <field name="domain">[]</field>
+            <field name="context">{
+                'chat_icon': True,
+                'search_default_filter_to_use_in_building': True,
+                'default_build_ok': True}</field>
+            <field name="view_id" eval="False"/>
+            <field name="search_view_id" ref="hr.view_employee_filter"/>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Add a new employee
+                </p><p>
+                    With just a quick glance on the Odoo employee screen, you
+                    can easily find all the information you need for each person;
+                    contact data, job position, availability, etc.
+                </p>
+            </field>
+        </record>
+    </data>
+</odoo>

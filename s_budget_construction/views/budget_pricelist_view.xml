@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="s_budget_pricelist_view_tree" model="ir.ui.view">
+            <field name="name">s.budget.pricelist.view.tree</field>
+            <field name="model">s.budget.pricelist</field>
+            <field name="arch" type="xml">
+                <list string="" create="false">
+                    <field name="name" />
+                    <field name="currency_id" />
+                    <field name="company_id" />
+                </list>
+            </field>
+        </record>
+
+        <record id="s_budget_pricelist_view_form" model="ir.ui.view">
+            <field name="name">s.budget.pricelist.view.form</field>
+            <field name="model">s.budget.pricelist</field>
+            <field name="arch" type="xml">
+                <form string="" create="false">
+                    <sheet>
+                        <div class="oe_title">
+                            <h1><field name="name" placeholder="e.g. USD Retailers"/></h1>
+                        </div>
+                        <group>
+                            <group name="pricelist_settings">
+                                <field name="currency_id" groups="base.group_multi_currency" options="{'no_create': True}"/>
+                                <field name="company_id" groups="base.group_multi_company" options="{'no_create': True}"/>
+                            </group>
+                        </group>
+
+                        <button name="set_price_total"
+                            string="Calculate Consumed Quantity"
+                            type="object"
+                            class="btn-primary"/>
+                        <notebook>
+                            <page name="pricelist_rules" string="Alls">
+                                <field name="pricelist_line_ids" nolabel="1">
+                                    <list string="Pricelist Rules" editable="bottom">
+                                        <field name="supply_code" readonly="1"/>
+                                        <field name="supply_id" required="1" readonly="1"/>
+                                        <field name="uom_id" required="1"/>
+                                        <field name="quantity" required="1"/>
+                                        <field name="price" required="1"/>
+                                        <field name="quantity_used" required="1" readonly="1"/>
+                                        <field name="price_total" required="1" readonly="1"/>
+                                    </list>
+                                </field>
+                            </page>
+                            <page name="material_componets" string="Materials">
+                                <field name="pricelist_material_ids" nolabel="1">
+                                    <list string="Pricelist Rules" editable="bottom" create="0">
+                                        <field name="supply_code" readonly="1"/>
+                                        <field name="supply_id" required="1" readonly="1"/>
+                                        <field name="uom_id" required="1"/>
+                                        <field name="quantity" required="1"/>
+                                        <field name="price" required="1"/>
+                                        <field name="quantity_used" required="1" readonly="1"/>
+                                        <field name="price_total" required="1" readonly="1"/>
+                                    </list>
+                                </field>
+                            </page>
+                            <page name="work_force_components" string="Work force">
+                                <field name="pricelist_work_force_ids" nolabel="1">
+                                    <list string="Pricelist Rules" editable="bottom" create="0">
+                                        <field name="supply_code" readonly="1"/>
+                                        <field name="supply_id" required="1" readonly="1"/>
+                                        <field name="uom_id" required="1"/>
+                                        <field name="quantity" required="1"/>
+                                        <field name="price" required="1"/>
+                                        <field name="quantity_used" required="1" readonly="1"/>
+                                        <field name="price_total" required="1" readonly="1"/>
+                                    </list>
+                                </field>
+                            </page>
+                            <page name="tool_componets" string="Tools">
+                                <field name="pricelist_tools_ids" nolabel="1">
+                                    <list string="Pricelist Rules" editable="bottom" create="0">
+                                        <field name="supply_code" readonly="1"/>
+                                        <field name="supply_id" required="1" readonly="1"/>
+                                        <field name="uom_id" required="1"/>
+                                        <field name="quantity" required="1"/>
+                                        <field name="price" required="1"/>
+                                        <field name="quantity_used" required="1" readonly="1"/>
+                                        <field name="price_total" required="1" readonly="1"/>
+                                    </list>
+                                </field>
+                            </page>
+                            <page name="machinery_componets" string="Machinery">
+                                <field name="pricelist_machinery_ids" nolabel="1">
+                                    <list string="Pricelist Rules" editable="bottom" create="0">
+                                        <field name="supply_code" readonly="1"/>
+                                        <field name="supply_id" required="1" readonly="1"/>
+                                        <field name="uom_id" required="1"/>
+                                        <field name="quantity" required="1"/>
+                                        <field name="price" required="1"/>
+                                        <field name="quantity_used" required="1" readonly="1"/>
+                                        <field name="price_total" required="1" readonly="1"/>
+                                    </list>
+                                </field>
+                            </page>
+                            <page name="transport_cost_componets" string="Transport cost">
+                                <field name="pricelist_transport_cost_ids" nolabel="1">
+                                    <list string="Pricelist Rules" editable="bottom" create="0">
+                                        <field name="supply_code" readonly="1"/>
+                                        <field name="supply_id" required="1" readonly="1"/>
+                                        <field name="uom_id" required="1"/>
+                                        <field name="quantity" required="1"/>
+                                        <field name="price" required="1"/>
+                                        <field name="quantity_used" required="1" readonly="1"/>
+                                        <field name="price_total" required="1" readonly="1"/>
+                                    </list>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="s_budget_pricelist_action" model="ir.actions.act_window">
+            <field name="name">Pricelist</field>
+            <field name="res_model">s.budget.pricelist</field>
+            <field name="view_mode">list,form</field>
+            <field name="domain">[('is_a_buget_template', '=', False)]</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">Create the first pricelist</p>
+            </field>
+        </record>
+    </data>
+</odoo>

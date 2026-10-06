@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="budget_item_view_form" model="ir.ui.view">
+            <field name="name">s.budget.const.item.view.form</field>
+            <field name="model">project.task</field>
+            <field name="priority">100</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group name="main">
+                        <field name="concept_id" />
+                        <field name="id" />
+
+                        <field name="name" />
+                        <field name="description" />
+                    </group>
+                </form>
+            </field>
+        </record>
+
+
+        <record id="budget_item_view_tree" model="ir.ui.view">
+            <field name="name">s.budget.const.item.view.tree</field>
+            <field name="model">project.task</field>
+            <field name="priority">100</field>
+            <field name="arch" type="xml">
+                <list
+                    editable="bottom"
+                    decoration-bf="item_type == 'grouper'"
+                    decoration-danger="item_type == 'concept' and not concept_template_id and not is_a_buget_template"
+                    js_class="budget_item_list">
+
+                    <field name="is_a_buget_template" column_invisible="1" />
+                    <field name="company_id" column_invisible="1" />
+                    <field name="concept_template_id" column_invisible="1" />
+                    <field name="item_type" column_invisible="1" />
+                    <field name="parent_id" column_invisible="1" />
+                    <field name="project_id" column_invisible="1" />
+                    <field name="child_ids" column_invisible="1" />
+                    <field name="id" column_invisible="1" />
+                    <field name="concept_id" column_invisible="1" force_save="1" />
+                    <field name="description" column_invisible="1" />
+
+                    <field name="sequence" widget="handle" />
+                    <button
+                        type="object"
+                        name="action_open_concept_form"
+                        title="Open"
+                        class="btn btn-link"
+                        icon="fa-share-square-o"
+                        invisible="item_type == 'grouper' or not id"
+                    />
+
+                    <field name="budget_code" column_invisible="context.get('is_template')"/>
+                    <field name="budget_code" string="Template Code" column_invisible="not context.get('is_template')"/>
+
+                    <field name="grouper_code" readonly="item_type != 'grouper'" column_invisible="1"/>
+                    <field name="template_code" readonly="item_type == 'grouper'" column_invisible="context.get('is_template')"/>
+                    <field name="name" string="Name" />
+                    <field name="budget_description" />
+                    <field name="budget_uom_id" readonly="item_type == 'grouper'"/>
+                    <field name="budget_qty" />
+                    <field name="budget_price_unit" />
+                    <field name="budget_price_total" sum="Total" />
+                </list>
+            </field>
+        </record>
+
+        <record id="budget_item_view_search" model="ir.ui.view">
+            <field name="name">s.budget.const.item.view.search</field>
+            <field name="model">project.task</field>
+            <field name="priority" eval="90" />
+            <field name="arch" type="xml">
+                <search string="">
+                    <searchpanel>
+                        <field
+                            string="Items"
+                            name="parent_id"
+                            select="one"
+                            hierarchize="1"
+                            expand="1"
+                        />
+                    </searchpanel>
+                </search>
+            </field>
+        </record>
+
+        <!-- NO USAR esta acción directamente sino a través del action server que le sigue -->
+        <record id="budget_item_hierarchical_action" model="ir.actions.act_window">
+            <field name="name">Budget Construction Items</field>
+            <field name="res_model">project.task</field>
+            <field name="view_mode">list</field>
+            <field name="view_id" ref="s_budget_construction.budget_item_view_tree" />
+            <field name="search_view_id"
+                ref="s_budget_construction.budget_item_view_search" />
+            <field name="domain">[]</field>
+            <field name="context">{'use_budget_item_view': True}</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">Create the first budget</p>
+            </field>
+        </record>
+
+         <!-- NO USAR esta acción directamente sino a través del action server que le sigue -->
+        <record id="budget_template_item_hierarchical_action" model="ir.actions.act_window">
+            <field name="name">Budget Template Items</field>
+            <field name="res_model">project.task</field>
+            <field name="view_mode">list</field>
+            <field name="view_id" ref="s_budget_construction.budget_item_view_tree" />
+            <field name="search_view_id"
+                ref="s_budget_construction.budget_item_view_search" />
+            <field name="domain">['|', ('is_a_buget_template', '=', True), ('project_id', '=', False)]</field>
+            <field name="context">{'use_budget_template_item_view': True}</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">Create the first budget</p>
+            </field>
+        </record>
+
+        <!--
+            Utilizar esta acción para abrir la vista de los items del presupuesto
+            para que no se pierda el contexto al recargar la página
+        -->
+        <record model="ir.actions.server" id="budged_action_server">
+            <field name="name">Budged Items</field>
+            <field name="model_id" ref="project.model_project_project" />
+            <field name="state">code</field>
+            <field name="code">
+                action = model.action_open_budget()
+            </field>
+        </record>
+
+        <record id="budget_item_form_action" model="ir.actions.act_window">
+            <field name="name">Budget Items</field>
+            <field name="res_model">project.task</field>
+            <field name="view_mode">form</field>
+            <field name="domain">[('is_a_buget_template', '=', False)]</field>
+            <field name="view_id" ref="s_budget_construction.budget_item_view_form" />
+        </record>
+
+        <record id="project.action_view_my_task" model="ir.actions.act_window">
+            <field name="domain">[('is_a_buget_template', '=', False)]</field>
+        </record>
+
+        <record model="ir.ui.view" id="view_task_form2_inherit_budget">
+            <field name="name">project.task.form.inherit.budget</field>
+            <field name="model">project.task</field>
+            <field name="inherit_id" ref="project.view_task_form2" />
+            <field name="arch" type="xml">
+                <xpath expr="//notebook" position="inside">
+                    <page name="budget_page" string="Budget" groups="s_budget_construction.group_user">
+                        <group>
+                            <group name="budget_item">
+                                <field name="item_type" />
+                                <field name="budget_code" />
+                                <field name="grouper_code" readonly="item_type != 'grouper'" />
+                                <field name="parent_code" />
+                                <field name="concept_id" />
+                                <field name="concept_template_id" />
+                                <field name="template_code" readonly="item_type == 'grouper'" />
+                                <field name="template_code_aux" />
+                                <field name="is_a_buget_template" />
+                            </group>
+                            <group name="budget_amounts">
+                                <field name="budget_uom_id" readonly="item_type == 'grouper'" />
+                                <field name="budget_qty" />
+                                <field name="budget_price_unit" readonly="1" />
+                                <field name="budget_price_total" />
+                                <field name="componens" />
+                            </group>
+                        </group>
+                        <field name="budget_description" placeholder="Description" />
+                    </page>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
