@@ -125,7 +125,7 @@ msgstr "Hijos"
 #: model:ir.model.fields,field_description:s_budget_construction.field_s_budget_const_supply_type__code
 #: model:ir.model.fields,field_description:s_budget_construction.field_s_budget_pricelist_line__supply_code
 msgid "Code"
-msgstr "Código"
+msgstr "Código de suministro"
 
 #. module: s_budget_construction
 #: model:ir.model.fields,field_description:s_budget_construction.field_s_budget_pricelist__company_id
@@ -597,7 +597,7 @@ msgstr "Suministros"
 #. module: s_budget_construction
 #: model:ir.model.fields,field_description:s_budget_construction.field_s_budget_const_concept_component__supply_id
 msgid "Supply"
-msgstr "Suministro"
+msgstr "Suministro Compuesto"
 
 #. module: s_budget_construction
 #: model:ir.model,name:s_budget_construction.model_s_budget_const_supply_type

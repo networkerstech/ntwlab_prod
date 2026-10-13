@@ -13,6 +13,7 @@
                         <field name="code" />
                         <field name="name" />
                         <field name="supply_type" />
+                        <field name="parent_id" />
                     </group>
                     <notebook invisible="parent_id">
                         <page name="children" string="Specific">
@@ -74,11 +75,13 @@
                             <field name="description" />
                             <field name="supply_type_id" />
                             <field name="supply_type" />
-                            <field name="product_template_id" invisible="supply_type not in ['material', 'tools', 'machinery']"/>
+                            <field name="product_template_id" invisible="supply_type not in ['material', 'tools', 'machinery']"
+                            domain="[('supply_type', '=', supply_type)]"/>
                             <field name="fleet_vehicle_id" invisible="supply_type not in ['transport_cost']"/>
                             <field name="budget_gang_id" invisible="supply_type not in ['work_force']"/>
                         </group>
                         <group>
+                            <field name="project_id" />
                             <field name="uom_id" required="1" />
                             <field name="currency_id" required="1" />
                             <field name="price_unit" required="1" />
@@ -87,7 +90,7 @@
                     <notebook invisible="supply_type != 'auxiliaries'">
                         <page name="material_componets" string="Materials">
                             <field name="component_material_ids" context="{'is_material': True, 'default_supply_type': 'material'}">
-                                 <list editable="bottom" context="{'is_material': True, 'default_supply_type': 'material'}">
+                                 <list editable="bottom">
                                     <field name="supply_code_aux"/>
                                     <field name="product_template_id" domain="[('build_ok', '=', True), ('supply_type', '=', 'material')]"/>
                                     <field name="budget_gang_id" column_invisible="1"/>

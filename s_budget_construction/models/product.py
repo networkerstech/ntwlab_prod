@@ -10,8 +10,8 @@ class ProductTemplate(models.Model):
     _rec_name = 'name'
 
     build_ok = fields.Boolean("Can be used in construction")
-    tool_ok = fields.Boolean("Tool")
-    machinery_ok = fields.Boolean("Machinery")
+    tool_ok = fields.Boolean("Herramienta")
+    machinery_ok = fields.Boolean("Maquinaria")
     supply_type_id = fields.Many2one(
         compute="_compute_supply_type_id",
         store=True,

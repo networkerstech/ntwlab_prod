@@ -22,7 +22,7 @@
         sequence="10" />
     <menuitem
         id="materials_menu"
-        name="Materials"
+        name="Materiales"
         action="s_budget_construction.products_for_building_action"
         parent="s_budget_construction.product_menu"
         sequence="10" />
@@ -34,13 +34,13 @@
         sequence="10" />
      <menuitem
         id="machinery_menu"
-        name="Machinery"
+        name="Maquinaria"
         action="s_budget_construction.machinery_action"
         parent="s_budget_construction.product_menu"
         sequence="10" />
      <menuitem
         id="transport_menu"
-        name="Transport Cost"
+        name="Costes de Transporte"
         action="s_budget_construction.transport_action"
         parent="s_budget_construction.product_menu"
         sequence="11" />
@@ -62,9 +62,28 @@
 <!--        parent="s_budget_construction.product_menu" />-->
 
 
+    <!-- Concepts -->
+    <menuitem
+        id="budget_concept_root_menu"
+        name="Conceptos"
+        parent="s_budget_construction.budget_menu_root"
+        sequence="15" />
+    <menuitem
+        id="budget_concept_menu"
+        name="Conceptos"
+        action="s_budget_construction.budget_concept_action"
+        parent="s_budget_construction.budget_concept_root_menu"
+        sequence="1" />
+    <menuitem
+        id="budget_concept_component_menu"
+        name="Componentos de Componentes"
+        action="s_budget_construction.budget_concept_component_action"
+        parent="s_budget_construction.budget_concept_root_menu"
+        sequence="2" />
+
     <!-- Configuration -->
     <menuitem id="budget_menu_config"
-        name="Configuration"
+        name="Configuración"
         parent="s_budget_construction.budget_menu_root"
         groups="s_budget_construction.group_manager"
         sequence="20" />
@@ -90,19 +109,10 @@
         groups="s_budget_construction.group_budget_template_user"
         parent="s_budget_construction.budget_menu_config" />
 
-        <!-- Your Action -->
-        <record id="action_s_budget_const_concept_component" model="ir.actions.act_window">
-            <field name="name">Auxiliars</field>
-            <field name="res_model">s.budget.const.concept.component</field>
-            <field name="view_mode">list,form</field>
-            <field name="context">{'default_supply_type':'auxiliaries'}</field>
-            <field name="domain">[('supply_type', 'in', ['auxiliaries'])]</field>
-        </record>
-
-        <menuitem id="action_s_budget_const_concept_component_menu"
-                  name="Auxiliars"
-                  parent="s_budget_construction.product_menu"
-                  sequence="10"
-                  action="action_s_budget_const_concept_component"/>
+    <menuitem id="action_s_budget_const_concept_component_menu"
+        name="Auxiliars"
+        parent="s_budget_construction.product_menu"
+        sequence="10"
+        action="s_budget_construction.action_s_budget_const_concept_component" />
 
 </odoo>

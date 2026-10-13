@@ -10,7 +10,7 @@
     "author": "SUITEDOO",
     "website": "https://www.suitedoo.com",
     "category": "Uncategorized",
-    "version": "19.0.20261005.01",
+    "version": "19.0.20261012.01",
     "depends": ["base", "web", "uom", "stock", "project", "hr", "hr_hourly_cost", "fleet"],
     "data": [
         "data/data.xml",
@@ -20,6 +20,7 @@
         "views/budget_supply_views.xml",
         "views/product_views.xml",
         "views/budget_concept_views.xml",
+        'views/budget_concept_component_views.xml',
         "views/budget_item_views.xml",
         "views/budget_views.xml",
         "views/budget_pricelist_view.xml",

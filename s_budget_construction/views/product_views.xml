@@ -10,10 +10,10 @@
                     <span class="d-inline-block">
                         <field name="build_ok" />
                         <label for="build_ok" />
-                        <field name="tool_ok" />
-                        <label for="tool_ok" />
-                        <field name="machinery_ok" />
-                        <label for="machinery_ok" />
+                        <field name="tool_ok" invisible="not build_ok"/>
+                        <label for="tool_ok" invisible="not build_ok"/>
+                        <field name="machinery_ok" invisible="not build_ok"/>
+                        <label for="machinery_ok" invisible="not build_ok"/>
                     </span>
                 </div>
                 <xpath expr="//sheet[@name='product_form']/notebook[1]/page[@name='general_information']/group[1]/group[@name='group_standard_price']/label[2]" position="replace">
@@ -22,7 +22,7 @@
                 </xpath>
 
                 <field name="type" position="after">
-                    <field name="supply_type" invisible="not build_ok"/>
+                    <field name="supply_type" invisible="not build_ok" required="build_ok"/>
                     <field name="supply_type_id" invisible="1"/>
                 </field>
 

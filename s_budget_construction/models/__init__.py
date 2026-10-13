@@ -3,6 +3,7 @@
 from . import supply_type
 from . import budget_supply
 from . import budget_concept
+from . import budget_concept_component
 from . import product
 from . import budget_item
 from . import budget

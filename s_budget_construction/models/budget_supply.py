@@ -12,7 +12,7 @@ class BudgetConstructionSypply(models.Model):
     _rec_name = "display_name"
 
     code = fields.Char("Code")
-    code_suply = fields.Char("Code", compute="_set_display_name")
+    code_suply = fields.Char("Code")
     name = fields.Char("Name", translate=True)
     display_name = fields.Char("Full name", compute="_set_display_name", compute_sudo=False)
     supply_type = fields.Selection(
@@ -34,17 +34,8 @@ class BudgetConstructionSypply(models.Model):
 
     @api.depends("parent_id", "code", "name")
     def _set_display_name(self):
-        for rec in self:
-            item = rec
-            item_path = []
-            item_path_cd = []
-            while item:
-                item_path_cd.append("%s" % (item.code))
-                item_path.append("[%s] - %s" % (item.code, item.name))
-                item = item.parent_id
-            item_path.reverse()
-            rec.code_suply = "/".join(item_path_cd)
-            rec.display_name = "/".join(item_path)
+        for record in self:
+            record.display_name = str(record.code) + " - " + str(record.name)
 
     @api.depends("parent_id", "parent_id.supply_type")
     def _set_supply_type(self):
@@ -73,10 +64,11 @@ class BudgetConstructionSypply(models.Model):
 
 class BudgetConstructionSypply(models.Model):
     _name = "s.budget.const.supply"
+    _inherit = ['mail.thread', 'mail.activity.mixin']
     _description = "Construction Budget Supply"
     _rec_name = "display_name"
 
-    code = fields.Char("Code")
+    code = fields.Char("Code", required=True)
     code_suply = fields.Char("Code", compute="_set_display_name", store=True)
     display_name = fields.Char("Full name", compute="_set_display_name", compute_sudo=False, store=True)
     product_template_id = fields.Many2one(
@@ -85,27 +77,29 @@ class BudgetConstructionSypply(models.Model):
     fleet_vehicle_id = fields.Many2one(comodel_name="fleet.vehicle", string="Vehicle")
     budget_gang_id = fields.Many2one(comodel_name="budget.gang", string="Gang")
 
+    project_id = fields.Many2one(
+        'project.project', string="Proyecto", tracking=True
+    )
+
     @api.depends("supply_type_id", "code", "description")
     def _set_display_name(self):
         for rec in self:
-            rec.code_suply = "/".join(
-                [str(rec.supply_type_id.code_suply)] + [str(rec.code)]
-            )
+            codigo_tipo = rec.supply_type_id.code or ""
+            rec.code_suply = "/".join([codigo_tipo, rec.code or ""])
             rec.display_name = "/".join(
-                [str(rec.supply_type_id.code_suply)]
-                + [str(rec.code) + "-" + str(rec.description)]
+                [codigo_tipo, (rec.code or "") + "-" + (rec.description or "")]
             )
 
     description = fields.Char("Description")
     supply_type_id = fields.Many2one(
         "s.budget.const.supply.type",
         "Supply type",
-        domain="[('parent_id', '!=', False)]",
+        domain="[('parent_id', '=', False)]",
     )
     supply_type = fields.Selection(
         related="supply_type_id.supply_type", readonly=True, store=True
     )
-    uom_id = fields.Many2one("uom.uom", string="Unit")
+    uom_id = fields.Many2one("uom.uom", string="Unidad de medida")
     currency_id = fields.Many2one(
         string="Currency",
         comodel_name="res.currency",
@@ -152,6 +146,10 @@ class BudgetConstructionSypply(models.Model):
         domain=[("supply_type", "=", "transport_cost")],
         copy=False,
     )
+
+    @api.onchange('product_template_id')
+    def _onchange_product_template_id(self):
+        self.uom_id = self.product_template_id.uom_id
 
 
 class ConceptSuplyBudget(models.Model):
@@ -200,6 +198,10 @@ class ConceptSuplyBudget(models.Model):
     price_total = fields.Float("Price total", compute="_set_price_total")
 
     parent_id = fields.Many2one("s.budget.const.supply", string="Parent")
+
+    @api.onchange('product_template_id')
+    def _onchange_product_template_id(self):
+        self.uom_id = self.product_template_id.uom_id
 
     @api.onchange("supply_code_aux")
     def _onchange_supply_code(self):
